@@ -1,0 +1,73 @@
+﻿.pdsa-sn-wrapper{
+    position: absolute;
+        top: 3.6em;
+        width: 13em;
+        height: 100%;
+        margin-left: -1.1em;
+        background-color: black;
+
+
+
+
+}
+
+.pdsa-sn-wrapper ul{
+    width: 11em;
+    list-style: none;
+    margin-top: 2em;
+    margin-left: 1em;
+    padding: 0em;
+
+
+}
+
+.pdsa-sn-wrapper ul li,
+.pdsa-sn-wrapper ul li ul li{
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+
+
+}
+
+.pdsa-sn-wrapper ul li a,
+.pdsa-sn-wrapper ul li ul li a{
+    color: #999999;
+    text-decoration: none;
+    padding: .5em;
+
+ }
+
+.pdsa-sn-wrapper ul li a:hover,
+.pdsa-sn-wrapper ul li ul li a:hover{
+    color: #fff;
+    text-decoration:none;
+
+ }
+
+.pdsa-sn-wrapper ul li a:active
+.pdsa-sn-wrapper ul li a:focus
+.pdsa-sn-wrapper ul li ul li a:active
+.pdsa-sn-wrapper ul li ul li a:focus{
+    text-decoration: none;
+    color:white;
+}
+
+.pdsa-sn-wrapper ul .pdsa-sn-brand{
+    margin-left: -.5em;
+    font-size: large;
+}
+.pdsa-sn-wrapper ul .pdsa-sn-brand a{  
+    color: white;      
+}
+.pdsa-sn-wrapper ul .pdsa-sn-brand a:hover{
+    color: #fff;
+    background: none;
+
+}
+
+.pdsa-sn-wrapper ul li ul{
+    list-style: none;
+    margin-top: 1em;
+    margin-left: 1em;
+}

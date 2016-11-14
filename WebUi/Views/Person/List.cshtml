@@ -1,0 +1,14 @@
+﻿@model WebUi.Models.PersonListViewModel
+
+@{
+    ViewBag.Title = "Person";
+}
+
+@foreach (var p in Model.Persons)
+{
+    @Html.Partial("PersonSummary", p);
+}
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new {page = x }))
+    
+</div>

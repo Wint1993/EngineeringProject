@@ -1,0 +1,92 @@
+﻿@model Domain.Entities.Warehouses
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="navbar navbar-inverse" role="navigation">
+
+<a class="navbar-brand" href="@Url.Action("List","Person")">Aplikacja</a>
+<ul class="nav navbar-nav">
+    <li>@Html.ActionLink("About", "About", "Navigator")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Navigator")</li>
+</ul>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+
+        <ul class="nav nav-pills nav-stacked span3">
+            <li class="nav-link active"><a href="#">CRM</a></li>
+            <li>@Html.ActionLink("Ludzie", "Index", "Admin")</li>
+            <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
+            <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
+
+        </ul>
+
+    </div>
+    <div class="col-xs-10">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Postalcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postalcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+        
+
+
+    </div>
+    
+</div>
