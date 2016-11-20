@@ -11,7 +11,7 @@ namespace Domain.Entities
     public class Person
     {
         [HiddenInput(DisplayValue = false)]
-        public int ID { get; set; }
+        public int personID { get; set; }
 
         [Required(ErrorMessage ="Wpisz imię i nazwisko")]
         [Display(Name="Imię i nazwisko")]
@@ -56,6 +56,7 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Wpisz Pesel")]
         [Display(Name = "Pesel")]
         public decimal Pesel { get; set; }
-
+        [HiddenInput(DisplayValue = false)]
+        public virtual ICollection<Carriage> Carriagesss { get; set; }
     }
 }

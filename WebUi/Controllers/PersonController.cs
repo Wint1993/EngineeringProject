@@ -30,7 +30,7 @@ namespace WebUi.Controllers
       PersonListViewModel model = new PersonListViewModel
         {
             Persons = repository.Persons
-              .OrderBy(p => p.ID)
+              .OrderBy(p => p.personID)
               .Skip((page - 1) * PageSize)
               .Take(PageSize),
             PagingInfo = new PagingInfo

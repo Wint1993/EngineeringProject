@@ -1,11 +1,9 @@
-﻿@model Domain.Entities.Person
+﻿@model Domain.Entities.Packs
 
 @{
-    ViewBag.Title = "Admin: Edycja " + @Model.Name;
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-
 <div class="navbar navbar-inverse" role="navigation">
 
     <a class="navbar-brand" href="@Url.Action("List","Person")">Aplikacja</a>
@@ -24,7 +22,6 @@
             <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
             <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
             <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
-
         </ul>
 
     </div>
@@ -38,151 +35,75 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Adress)
+            @Html.DisplayNameFor(model => model.wymiarX)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Adress)
+            @Html.DisplayFor(model => model.wymiarX)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tel)
+            @Html.DisplayNameFor(model => model.wymiarY)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tel)
+            @Html.DisplayFor(model => model.wymiarY)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.wymiarZ)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.wymiarZ)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.Waga)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Country)
+            @Html.DisplayFor(model => model.Waga)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayNameFor(model => model.dataprzyjeciadomagazynu)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.State)
+            @Html.DisplayFor(model => model.dataprzyjeciadomagazynu)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Concern)
+            @Html.DisplayNameFor(model => model.datawyslaniazmagazynu)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Concern)
+            @Html.DisplayFor(model => model.datawyslaniazmagazynu)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ConcernAdress)
+            @Html.DisplayNameFor(model => model.dataodebrania)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ConcernAdress)
+            @Html.DisplayFor(model => model.dataodebrania)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Postalcode)
+            @Html.DisplayNameFor(model => model.WarehousesID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Postalcode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NIP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NIP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pesel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pesel)
+            @Html.DisplayFor(model => model.WarehousesID)
         </dd>
         <p>
 
             @Html.ActionLink("Wróć do listy", "Index")
         </p>
-        
-
-
     </div>
-   
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

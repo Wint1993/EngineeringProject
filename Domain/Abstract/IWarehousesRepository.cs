@@ -12,6 +12,6 @@ namespace Domain.Abstract
         IEnumerable<Warehouses> Warehousess { get; }
         void SaveWarehouses(Warehouses warehouses);
 
-        Warehouses DeleteWarehouses(int ID);
+        Warehouses DeleteWarehouses(int WarehousesID);
     }
 }

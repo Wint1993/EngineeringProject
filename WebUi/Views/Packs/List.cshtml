@@ -1,0 +1,27 @@
+﻿@model WebUi.Models.PacksListViewModel
+
+@foreach (var p in Model.Packss)
+{
+    @Html.Partial("PacksSummary", p);
+}
+
+
+@using (Html.BeginForm("back", "Carriage"))
+{
+    <div class="pull-right">
+        
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <input type="submit" class="btn btn-success" value="Wróc" />
+    </div>
+}
+
+@*@using (Html.BeginForm("AddPackstoCarriage", "CarriageCar"))
+{
+    <div class="pull-right">
+        @Html.HiddenFor(x=>x.PacksID)
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <input type="submit" class="btn btn-success" value="Dodaj do"/>
+    </div>
+
+}
+*@

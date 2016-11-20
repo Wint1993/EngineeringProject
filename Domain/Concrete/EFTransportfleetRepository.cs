@@ -19,13 +19,13 @@ namespace Domain.Concrete
 
         public void SaveTransportfleet(Transportfleet transportfleet)
         {
-            if (transportfleet.ID == 0)
+            if (transportfleet.TranID == 0)
             {
                 context.Transportfleets.Add(transportfleet);
             }
             else
             {
-                Transportfleet dbEntry = context.Transportfleets.Find(transportfleet.ID);
+                Transportfleet dbEntry = context.Transportfleets.Find(transportfleet.TranID);
                 if (dbEntry != null)
                 {
                     dbEntry.Carname = transportfleet.Carname;
@@ -42,9 +42,9 @@ namespace Domain.Concrete
             context.SaveChanges();
         }
 
-        public Transportfleet DeleteTransportfleet(int ID)
+        public Transportfleet DeleteTransportfleet(int TranID)
         {
-            Transportfleet dbEntry = context.Transportfleets.Find(ID);
+            Transportfleet dbEntry = context.Transportfleets.Find(TranID);
             if (dbEntry != null)
             {
                 context.Transportfleets.Remove(dbEntry);

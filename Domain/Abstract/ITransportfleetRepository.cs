@@ -13,6 +13,6 @@ namespace Domain.Abstract
 
         void SaveTransportfleet(Transportfleet transportfleet);
 
-        Transportfleet DeleteTransportfleet(int ID);
+        Transportfleet DeleteTransportfleet(int TranID);
     }
 }

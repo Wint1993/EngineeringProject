@@ -10,7 +10,8 @@ namespace Domain.Entities
 {
     public class Transportfleet
     {
-        public int ID { get; set; }
+        [Key]
+        public int TranID { get; set; }
         public string Carname { get; set; }
         public string Owner { get; set; }
         public string Model { get; set; }
@@ -19,8 +20,9 @@ namespace Domain.Entities
         public string Registrationnumber { get; set; }
         public string VIN { get; set; }
         public string Active { get; set; }
-        
-     
+        [HiddenInput(DisplayValue = false)]
+        public virtual ICollection<Carriage> Carriagesss { get; set; }
+
 
 
     }

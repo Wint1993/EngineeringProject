@@ -36,6 +36,8 @@ namespace WebUi.Infrastructure
            kernel.Bind<IWarehousesRepository>().To<EFWarehousesRepository>();
            kernel.Bind<ITransportfleetRepository>().To<EFTransportfleetRepository>();
            kernel.Bind<IPacksRepository>().To<EFPacksRepository>();
+           kernel.Bind<ICarriageRepository>().To<EFCarriageRepository>();
+
 
         }
     }

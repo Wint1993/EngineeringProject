@@ -19,21 +19,21 @@
 
         <ul class="nav nav-pills nav-stacked span3">
             <li class="nav-link active"><a href="#">CRM</a></li>
-            <li>@Html.ActionLink("Ludzie", "Index", "Admin")</li>
+            <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
             <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
             <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
+            <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+            <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
         </ul>
 
     </div>
     <div class="col-xs-10">
-        @*
+        
         <ul class="nav nav-tabs">
 
-            <li>@Html.ActionLink("Ludzie", "Index", "Admin")</li>
-            <li><a href="#">Menu 2</a></li>
-            <li><a href="#">Menu 3</a></li>
-        </ul> *@
+            
+        </ul> 
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-right">ID</th>
@@ -44,21 +44,36 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="text-right">@item.ID</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.ID })</td>
+                    <td class="text-right">@item.personID</td>
+                    <td>@Html.ActionLink(item.Name, "Edit", new { item.personID })</td>
                     <td class="text-right">@item.Tel.ToString()</td>
                     <td class="text-center">
-                        @Html.ActionLink("Details", "Details", new {item.ID })
-                        @using (Html.BeginForm("Delete", "Admin"))
-                        {
-                            @Html.Hidden("ID", item.ID)
-                            <input type="submit"
-                                   class="btn btn-default btn-xs"
-                                   value="Usuń" />
+                      
+
+                            @using (Html.BeginForm("Delete", "Admin"))
+                            {
+                                @Html.Hidden("ID", item.personID)
+                                <input type="submit"
+                                       class="btn btn-danger btn-xs"
+                                       value="Usuń" />
+
+
+                            }
+                      
+
+                            @using (Html.BeginForm("Details", "Admin", new { item.personID }))
+                            {
+                                @Html.Hidden("ID", item.personID)
+                                <input type="submit"
+                                       class="btn btn-primary btn-xs"
+                                       value="Szczegóły" />
+
+
+                            }
                         
-                       
-                        }
-                    </td>
+
+</td>
+
                 </tr>
             }
         </table>

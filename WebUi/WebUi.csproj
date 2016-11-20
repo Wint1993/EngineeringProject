@@ -291,7 +291,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CarriageController.cs" />
     <Compile Include="Controllers\NavigatorController.cs" />
+    <Compile Include="Controllers\CarriageCartController.cs" />
     <Compile Include="Controllers\PacksController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\TransportfleetController.cs" />
@@ -301,6 +303,9 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\CarriageIndexViewModel.cs" />
+    <Compile Include="Models\PacksIndexViewModel.cs" />
+    <Compile Include="Models\PacksListViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\PersonListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -331,6 +336,13 @@
     <Content Include="Views\Transportfleet\Edit.cshtml" />
     <Content Include="Views\Packs\Index.cshtml" />
     <Content Include="Views\Packs\Edit.cshtml" />
+    <Content Include="Views\Carriage\Index.cshtml" />
+    <Content Include="Views\Carriage\Edit.cshtml" />
+    <Content Include="Views\Shared\PacksSummary.cshtml" />
+    <Content Include="Views\Packs\List.cshtml" />
+    <Content Include="Views\CarriageCart\Index.cshtml" />
+    <Content Include="Views\Transportfleet\Details.cshtml" />
+    <Content Include="Views\Packs\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -349,6 +361,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PacksCart\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

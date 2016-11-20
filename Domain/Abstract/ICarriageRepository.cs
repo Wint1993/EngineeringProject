@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 
+
 namespace Domain.Abstract
 {
-    public interface IPersonRepository
+    public interface ICarriageRepository
     {
-        IEnumerable<Person> Persons { get; }
+        IEnumerable<Carriage> Carriagess { get; }
 
-        void SavePerson(Person person);
+        void SaveCarriage(Carriage carriage);
 
-        Person DeletePerson(int personID);
+        Carriage DeleteCarriage(int CarriageID);
     }
 }

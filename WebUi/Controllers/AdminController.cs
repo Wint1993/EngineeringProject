@@ -28,9 +28,9 @@ namespace WebUi.Controllers
         }
 
 
-        public ViewResult Edit(int? ID)
+        public ViewResult Edit(int? personID)
         {
-            Person person = repository.Persons.FirstOrDefault(p => p.ID == ID);
+            Person person = repository.Persons.FirstOrDefault(p => p.personID == personID);
             return View(person);
 
         }
@@ -56,18 +56,18 @@ namespace WebUi.Controllers
 
       
 
-        public ActionResult Details(int? ID)
+        public ActionResult Details(int? personID)
         {
 
-            Person person = repository.Persons.FirstOrDefault(p => p.ID == ID);
+            Person person = repository.Persons.FirstOrDefault(p => p.personID == personID);
             return View(person);
         }
 
 
         [HttpPost]
-        public ActionResult Delete(int ID)
+        public ActionResult Delete(int personID)
         {
-            Person delPerson = repository.DeletePerson(ID);
+            Person delPerson = repository.DeletePerson(personID);
             if (delPerson != null)
             {
                 TempData["message"] = string.Format("Usunięto {0}", delPerson.Name);

@@ -79,15 +79,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICarriageRepository.cs" />
     <Compile Include="Abstract\IPacksRepository.cs" />
     <Compile Include="Abstract\ITransportfleetRepository.cs" />
     <Compile Include="Abstract\IPersonRepository.cs" />
     <Compile Include="Abstract\IWarehousesRepository.cs" />
+    <Compile Include="Concrete\EFCarriageRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFPacksRepository.cs" />
     <Compile Include="Concrete\EFPersonRepository.cs" />
     <Compile Include="Concrete\EFTransportfleetRepository.cs" />
     <Compile Include="Concrete\EFWarehousesRepository.cs" />
+    <Compile Include="Entities\Carriage.cs" />
+    <Compile Include="Entities\CarriageCart.cs" />
     <Compile Include="Entities\Packs.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Transportfleet.cs" />

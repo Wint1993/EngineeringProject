@@ -26,9 +26,9 @@ namespace Domain.Entities
         [HiddenInput(DisplayValue = false)]
         public virtual ICollection<Packs> Packsss { get; set; }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return Name;
-        }
+        }*/
     }
 }

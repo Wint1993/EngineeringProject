@@ -32,17 +32,17 @@ namespace WebUi.Controllers
         {
             return View("Edit", new Transportfleet());
         }
-        public ActionResult Details(int? ID)
+        public ActionResult Details(int? TranID)
         {
-            Transportfleet transportfleet = repository.Transportfleets.FirstOrDefault(p => p.ID == ID);
+            Transportfleet transportfleet = repository.Transportfleets.FirstOrDefault(p => p.TranID == TranID);
             return View(transportfleet);
         }
 
 
 
-        public ViewResult Edit(int? ID)
+        public ViewResult Edit(int? TranID)
         {
-            Transportfleet transportfleet = repository.Transportfleets.FirstOrDefault(p => p.ID == ID);
+            Transportfleet transportfleet = repository.Transportfleets.FirstOrDefault(p => p.TranID == TranID);
             return View(transportfleet);
 
         }
@@ -63,9 +63,9 @@ namespace WebUi.Controllers
 
 
         }
-        public ActionResult Delete(int ID)
+        public ActionResult Delete(int TranID)
         {
-            Transportfleet deltransportfleet = repository.DeleteTransportfleet(ID);
+            Transportfleet deltransportfleet = repository.DeleteTransportfleet(TranID);
             if (deltransportfleet != null)
             {
                 TempData["message"] = string.Format("Usunięto {0}", deltransportfleet.Carname);

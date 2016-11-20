@@ -12,8 +12,8 @@ namespace WebUi.Controllers
     public class PacksController : Controller
     {
         private IPacksRepository repository;
-        private IWarehousesRepository repository1;
-        public int PageSize = 1;
+        //private IWarehousesRepository repository1;
+        public int PageSize = 4;
         public PacksController(IPacksRepository packrepostiory)
         {
             this.repository = packrepostiory;
@@ -22,13 +22,32 @@ namespace WebUi.Controllers
         
      
 
-        public ViewResult List()
-        {
-            return View(repository.Packss);
-        }
+        
         public ViewResult Index()
         {
             return View(repository.Packss);
+        }
+        public ViewResult Index1()
+        {
+            return View(repository.Packss);
+        }
+        public ViewResult List(int page = 1)
+        {
+            PacksListViewModel model = new PacksListViewModel
+            {
+                Packss = repository.Packss
+                    .OrderBy(p => p.PacksID)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    PersonsPerPage = PageSize,
+                    TotalPersons = repository.Packss.Count()
+                }
+
+            };
+            return View(model);
         }
 
         public ViewResult Create()

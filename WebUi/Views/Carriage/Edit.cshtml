@@ -1,4 +1,4 @@
-﻿@model Domain.Entities.Transportfleet
+﻿@model Domain.Entities.Carriage
 
 @{
     ViewBag.Title = "Edit";
@@ -16,7 +16,7 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h3>Edycja @Model.Carname</h3>
+        <h3>Edycja @Model.Name</h3>
     </div>
 
 
@@ -39,22 +39,23 @@
 
             <ul class="nav nav-tabs">
 
-               
+           
+                
             </ul>
-            @using (Html.BeginForm("Edit", "Transportfleet"))
+            @using (Html.BeginForm("Edit", "Carriage"))
             {
                 <div class="panel-body">
-                    @Html.HiddenFor(m => m.TranID)
+                    @Html.HiddenFor(m => m.CarriageID)
 
 
                     @foreach (var property in ViewData.ModelMetadata.Properties)
                     {
-                        if (property.PropertyName != "TranID")
+                        if (property.PropertyName != "CarriageID")
                         {
                             <div class="form-group">
                                 <label>@(property.DisplayName ?? property.PropertyName)</label>
 
-                                @if (property.PropertyName == "Extrainformation")
+                                @if (property.PropertyName == "Name")
                         {
                                     @Html.TextArea(property.PropertyName, null,
                                 new { @class = "form-control", rows = 5 })
@@ -65,6 +66,13 @@
                                     @Html.TextBox(property.PropertyName, null,
                                 new { @class = "form-control" })
                                 }
+                                @Html.ValidationMessage(property.PropertyName)
+
+                                @if (property.PropertyName == "PacksID")
+                                {
+                                    @Html.ActionLink("Dodaj", "List", "Packs")
+                                }                                
+                                
                                 @Html.ValidationMessage(property.PropertyName)
 
                             </div>

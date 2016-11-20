@@ -1,20 +1,17 @@
-﻿@model Domain.Entities.Warehouses
+﻿@model Domain.Entities.Transportfleet
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-
-
 <div class="navbar navbar-inverse" role="navigation">
 
-<a class="navbar-brand" href="@Url.Action("List","Person")">Aplikacja</a>
-<ul class="nav navbar-nav">
-    <li>@Html.ActionLink("About", "About", "Navigator")</li>
-    <li>@Html.ActionLink("Contact", "Contact", "Navigator")</li>
-</ul>
+    <a class="navbar-brand" href="@Url.Action("List","Person")">Aplikacja</a>
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("About", "About", "Navigator")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Navigator")</li>
+    </ul>
 </div>
 <div class="row">
     <div class="col-xs-2">
@@ -31,51 +28,59 @@
     </div>
     <div class="col-xs-10">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Carname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Carname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Adress)
+            @Html.DisplayNameFor(model => model.Owner)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Adress)
+            @Html.DisplayFor(model => model.Owner)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Tel)
+            @Html.DisplayNameFor(model => model.Model)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tel)
+            @Html.DisplayFor(model => model.Model)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Maxcapacity)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.Maxcapacity)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Postalcode)
+            @Html.DisplayNameFor(model => model.Extrainformation)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Postalcode)
+            @Html.DisplayFor(model => model.Extrainformation)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NIP)
+            @Html.DisplayNameFor(model => model.Registrationnumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NIP)
+            @Html.DisplayFor(model => model.Registrationnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VIN)
         </dd>
 
         <dt>
@@ -85,13 +90,16 @@
         <dd>
             @Html.DisplayFor(model => model.Active)
         </dd>
-        <p>
 
+        <p>
+           
             @Html.ActionLink("Wróć do listy", "Index")
         </p>
-
-
-
     </div>
-    
+
 </div>
+
+
+
+
+

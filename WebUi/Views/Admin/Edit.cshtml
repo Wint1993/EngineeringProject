@@ -25,9 +25,11 @@
 
             <ul class="nav nav-pills nav-stacked span3">
                 <li class="nav-link active"><a href="#">CRM</a></li>
-                <li>@Html.ActionLink("Ludzie", "Index", "Admin")</li>
+                <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
                 <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
+                <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+                <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
             </ul>
 
@@ -36,19 +38,16 @@
 
             <ul class="nav nav-tabs">
 
-                <li>@Html.ActionLink("Ludzie", "Index", "Admin")</li>
-                <li><a href="#">Menu 2</a></li>
-                <li><a href="#">Menu 3</a></li>
             </ul> 
             @using (Html.BeginForm("Edit", "Admin"))
             {
                 <div class="panel-body">
-                    @Html.HiddenFor(m => m.ID)
+                    @Html.HiddenFor(m => m.personID)
                  
                     
                     @foreach (var property in ViewData.ModelMetadata.Properties)
                     {
-                        if (property.PropertyName != "ID")
+                        if (property.PropertyName != "personID")
                         {
                             <div class="form-group">
                                 <label>@(property.DisplayName ?? property.PropertyName)</label>

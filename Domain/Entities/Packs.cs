@@ -25,6 +25,10 @@ namespace Domain.Entities
         public int WarehousesID { get; set; }
         [ForeignKey("WarehousesID")]
         public Warehouses Warehouses { get; set; }
+        // public virtual ICollection<Carriage> Carriagesss { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public virtual ICollection<Carriage> Carriagesss { get; set; }
+
 
     }
 }

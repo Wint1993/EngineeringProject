@@ -14,5 +14,7 @@ namespace Domain.Concrete
         public DbSet<Warehouses> Warehousess { get; set; }
         public DbSet<Transportfleet> Transportfleets { get; set; }
         public DbSet<Packs> Packss { get; set; }
+        public DbSet<Carriage> Carriagess { get; set; }
+
     }
 }

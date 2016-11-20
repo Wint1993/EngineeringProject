@@ -19,13 +19,13 @@ namespace Domain.Concrete
 
         public void SavePerson(Person person)
         {
-            if(person.ID == 0)
+            if(person.personID == 0)
             {
                 context.Persons.Add(person);
             } 
             else
             {
-                Person dbEntry = context.Persons.Find(person.ID);
+                Person dbEntry = context.Persons.Find(person.personID);
                 if(dbEntry != null)
                 {
                     dbEntry.Name = person.Name;
@@ -39,15 +39,15 @@ namespace Domain.Concrete
                     dbEntry.Postalcode = person.Postalcode;
                     dbEntry.NIP = person.NIP;
                     dbEntry.Pesel = person.Pesel;
-
+                   
                 }
             }
             context.SaveChanges();
         }
 
-        public Person DeletePerson(int ID)
+        public Person DeletePerson(int personID)
         {
-            Person dbEntry = context.Persons.Find(ID);
+            Person dbEntry = context.Persons.Find(personID);
             if (dbEntry != null)
             {
                 context.Persons.Remove(dbEntry);

@@ -26,9 +26,11 @@
 
             <ul class="nav nav-pills nav-stacked span3">
                 <li class="nav-link active"><a href="#">CRM</a></li>
-                <li>@Html.ActionLink("Ludzie", "Index", "Admin")</li>
+                <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
                 <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
+                <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+                <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
             </ul>
 
@@ -37,9 +39,7 @@
 
             <ul class="nav nav-tabs">
 
-                <li>@Html.ActionLink("Ludzie", "Index", "Admin")</li>
-                <li><a href="#">Menu 2</a></li>
-                <li><a href="#">Menu 3</a></li>
+              
             </ul>
             @using (Html.BeginForm("Edit", "Packs"))
             {
