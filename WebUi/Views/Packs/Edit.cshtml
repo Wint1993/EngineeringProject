@@ -4,6 +4,8 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@Html.AntiForgeryToken()
+
 
 <div class="navbar navbar-inverse" role="navigation">
 
@@ -14,10 +16,15 @@
     </ul>
 </div>
 
+
 <div class="panel">
     <div class="panel-heading">
         <h3>Edycja @Model.Name</h3>
     </div>
+    @Html.AntiForgeryToken()
+
+
+
 
 
 
@@ -43,11 +50,115 @@
             </ul>
             @using (Html.BeginForm("Edit", "Packs"))
             {
+                @Html.AntiForgeryToken()
+
                 <div class="panel-body">
                     @Html.HiddenFor(m => m.PacksID)
+                    @Html.HiddenFor(m => m.Warehouses)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-7" })
+                        
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 
 
-                    @foreach (var property in ViewData.ModelMetadata.Properties)
+
+                  
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OwnerDescription, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.OwnerDescription, new { htmlAttributes = new { @class = "form-control" }, rows = 3 })
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.wymiarX, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.wymiarX, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.wymiarX, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.wymiarY, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.wymiarY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.wymiarY, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.wymiarZ, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.wymiarZ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.wymiarZ, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Waga, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Waga, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Waga, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dataprzyjeciadomagazynu, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.dataprzyjeciadomagazynu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dataprzyjeciadomagazynu, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.datawyslaniazmagazynu, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.datawyslaniazmagazynu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.datawyslaniazmagazynu, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.dataodebrania, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.dataodebrania, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dataodebrania, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WarehousesID, new { @class = "control-label col-md-7" })
+
+                        @Html.DropDownList("WarehousesID", null, htmlAttributes: new { @class = "form-control" })
+
+
+
+
+                    </div>
+                 
+
+
+                                      
+
+                @*  @foreach (var property in ViewData.ModelMetadata.Properties)
                     {
                         if (property.PropertyName != "PacksID")
                         {
@@ -57,30 +168,43 @@
                                 @if (property.PropertyName == "Name")
                                 {
                                     @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control", rows = 2 })
+                                new { @class = "form-control", rows = 0 })
                                 }
+                                @if (property.PropertyName == "WarehousesID")
+                                {      
+                                @Html.DropDownList("WarehousesID", null, htmlAttributes: new { @class = "form-control" }) 
+                                    @*  @Html.DropDownList("WarehousesID", String.Empty)
+                                                                        }
 
-                                else
-                                {
-                                    @Html.TextBox(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-                                @Html.ValidationMessage(property.PropertyName)
 
-                            </div>
-                        }
-                    }
-                </div>
 
-                <div class="panel-footer">
-                    <input type="submit" value="Zapisz" class="btn btn-primary" />
-                    @Html.ActionLink("Anuluj i wróć do listy", "Index", null, new
-               {
-                   @class = "btn btn-default"
-               })
-                </div>
-            }
-        </div>
-    </div>
-</div>
+                                                                        else
+                                                                        {
+                                                                            @Html.TextBox(property.PropertyName, null,
+                                                                        new { @class = "form-control" })
+                                                                        }
+                                                                        @Html.ValidationMessage(property.PropertyName)
+
+                                                                    </div>
+                                                                }
+                                                            }
+            *@
+            
+                                                        </div>
+
+                                                        <div class="panel-footer">
+
+
+
+
+                                                            <input type="submit" value="Zapisz" class="btn btn-primary" />
+                                                            @Html.ActionLink("Anuluj i wróć do listy", "Index", null, new
+                                                       {
+                                                           @class = "btn btn-default"
+                                                       })
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
 

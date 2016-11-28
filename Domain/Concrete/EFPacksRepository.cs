@@ -30,11 +30,12 @@ namespace Domain.Concrete
             }
             else
             {
+                
                 Packs dbEntry = context.Packss.Find(packs.PacksID);
                 if (dbEntry != null)
                 {
                     dbEntry.Name = packs.Name;
-               //     dbEntry.OwnerDescripiton = packs.OwnerDescripiton;
+                    dbEntry.OwnerDescription = packs.OwnerDescription;
                     dbEntry.wymiarX = packs.wymiarX;
                     dbEntry.wymiarY = packs.wymiarY;
                     dbEntry.wymiarZ = packs.wymiarZ;
@@ -43,7 +44,7 @@ namespace Domain.Concrete
                     dbEntry.datawyslaniazmagazynu = packs.datawyslaniazmagazynu;
                     dbEntry.dataodebrania = packs.dataodebrania;
                     dbEntry.WarehousesID = packs.WarehousesID;
-
+                  //  dbEntry.CarriageID = packs.CarriageID;
 
                 }
             }

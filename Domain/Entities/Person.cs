@@ -10,6 +10,7 @@ namespace Domain.Entities
 {
     public class Person
     {
+        [Key]
         [HiddenInput(DisplayValue = false)]
         public int personID { get; set; }
 
@@ -23,7 +24,7 @@ namespace Domain.Entities
 
         [Required(ErrorMessage = "Wpisz numer kontaktowy")]
         [Display(Name = "Numer kontaktowy")]
-        public decimal Tel { get; set; }
+        public string Tel { get; set; }
 
         [Required(ErrorMessage = "Wpisz adres email")]
         [Display(Name = "Email")]
@@ -47,16 +48,21 @@ namespace Domain.Entities
 
         [Required(ErrorMessage = "Wpisz kod pocztowy")]
         [Display(Name = "Kod pocztowy")]
-        public decimal Postalcode { get; set; }
+        public string Postalcode { get; set; }
 
         [Required(ErrorMessage = "Wpisz NIP")]
         [Display(Name = "NIP")]
-        public decimal NIP { get; set; }
+        public string NIP { get; set; }
 
         [Required(ErrorMessage = "Wpisz Pesel")]
         [Display(Name = "Pesel")]
-        public decimal Pesel { get; set; }
+        public string Pesel { get; set; }
+        /*
+        public int CarriageID { get; set; }
+        [ForeignKey("CarriageID")]
         [HiddenInput(DisplayValue = false)]
-        public virtual ICollection<Carriage> Carriagesss { get; set; }
+        [Display(Name = "")]
+        public Carriage Carriage { get; set; }*/
+
     }
 }

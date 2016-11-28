@@ -42,6 +42,8 @@ namespace WebUi
             );
 
             routes.MapRoute(null, "{controller}/{action}");
+
+
         }
     }
 }

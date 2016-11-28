@@ -46,7 +46,7 @@
                     <td class="text-right">eeee</td>
                     <td class="text-center">
                        
-                        @using (Html.BeginForm("Delete", "Carriage"))
+                        @using (Html.BeginForm("Delete", "Carriage", new { item.CarriageID }))
                         {
                             @Html.Hidden("CarriageID", item.CarriageID)
                             <input type="submit"

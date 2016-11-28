@@ -14,10 +14,8 @@
     </ul>
 </div>
 
-<div class="panel">
-    <div class="panel-heading">
-        <h3>Edycja @Model.Carname</h3>
-    </div>
++
+
 
 
 
@@ -38,7 +36,7 @@
         <div class="col-xs-10">
 
             <ul class="nav nav-tabs">
-
+                <h3>Edycja @Model.Carname</h3>
                
             </ul>
             @using (Html.BeginForm("Edit", "Transportfleet"))
@@ -54,23 +52,73 @@
                             <div class="form-group">
                                 <label>@(property.DisplayName ?? property.PropertyName)</label>
 
-                                @if (property.PropertyName == "Extrainformation")
-                        {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control", rows = 5 })
-                                }
-
-                                else
+                                @if (property.PropertyName == "Carname")
                                 {
-                                    @Html.TextBox(property.PropertyName, null,
+
+                                    @Html.TextArea(property.PropertyName, null,
                                 new { @class = "form-control" })
                                 }
+
+                                @if (property.PropertyName == "Owner")
+                                {
+                                    @Html.TextArea(property.PropertyName, null,
+                                new { @class = "form-control" })
+                                }
+                                @if (property.PropertyName == "StartDate")
+                                {
+                                    @Html.TextArea(property.PropertyName, null,
+                                new { @class = "form-control" })
+                                }
+
+                                @if (property.PropertyName == "Model")
+                                {
+                                    @Html.TextArea(property.PropertyName, null,
+                                new { @class = "form-control" })
+                                }
+
+                                @if (property.PropertyName == "Maxcapacity")
+                                {
+                                    @Html.TextArea(property.PropertyName, null,
+                                new { @class = "form-control" })
+                                }
+
+                                @if (property.PropertyName == "Extrainformation")
+                                {
+                                    @Html.TextArea(property.PropertyName, null,
+                                new { @class = "form-control", rows = 3 })
+                                }
+
+                                @if (property.PropertyName == "Registrationnumber")
+                                {
+                                    @Html.TextArea(property.PropertyName, null,
+                                new { @class = "form-control" })
+                                }
+
+                                @if (property.PropertyName == "VIN")
+                                {
+                                    @Html.TextArea(property.PropertyName, null,
+                                new { @class = "form-control" })
+                                }
+
+                                @if (property.PropertyName == "Active")
+                        {
+                                    @Html.DropDownListFor(m => m.Active, new SelectList(Enum.GetNames(typeof(Domain.Entities.Active))))
+
+                                }
+
                                 @Html.ValidationMessage(property.PropertyName)
+
+
+
+
+                                @Html.ValidationMessage(property.PropertyName)
+
 
                             </div>
                         }
                     }
                 </div>
+
 
                 <div class="panel-footer">
                     <input type="submit" value="Zapisz" class="btn btn-primary" />
@@ -78,6 +126,25 @@
                {
                    @class = "btn btn-default"
                })
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='StartDate'>
+                                    <input type='text' class="form-control" name="StartDate" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+            $(function () {
+                $('#StartDate').datetimepicker();
+            });
+                        </script>
+                    </div>
                 </div>
             }
         </div>

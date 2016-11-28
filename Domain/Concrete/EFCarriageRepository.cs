@@ -36,9 +36,7 @@ namespace Domain.Concrete
                     dbEntry.rzeczywistadatawyslania = carriage.rzeczywistadatawyslania;
                     dbEntry.zamierzonadataodebrania = carriage.zamierzonadataodebrania;
                     dbEntry.rzeczywistadataodebrania = carriage.rzeczywistadataodebrania;
-                    dbEntry.PacksID = carriage.PacksID;
-                    dbEntry.personID = carriage.personID;
-                    dbEntry.TranID = carriage.TranID;
+                   
 
 
                 }

@@ -12,23 +12,34 @@ namespace Domain.Entities
     {
         [HiddenInput(DisplayValue = false)]
         public int WarehousesID { get; set; }
+        [Required(ErrorMessage = "Wpisz nazwę magazynu")]
+        [Display(Name = "Nazwa magazynu")]
         public string Name { get; set; }
-
+        [Required(ErrorMessage = "Wpisz adres")]
+        [DataType(DataType.MultilineText), Display(Name = "Adres")]
         public string Adress { get; set; }
+        [Required(ErrorMessage = "Wpisz numer kontaktowy do magazynu")]
+        [Display(Name = "Numer kontaktowy do magazynu")]
+        public string Tel { get; set; }
+        [Required(ErrorMessage = "Wpisz kod pocztowy")]
+        [Display(Name = "Kod pocztowy")]
+        public string Postalcode { get; set; }
+        [Required(ErrorMessage = "Wpisz NIP")]
+        [Display(Name = "NIP")]
+        public string NIP { get; set; }
 
-        public decimal Tel { get; set; }
-
-        public string Email { get; set; }
-        public decimal Postalcode { get; set; }
-        public decimal NIP { get; set; }
-        public string Active { get; set; }
+        public Active Active { get; set; }
+        [Timestamp]
 
         [HiddenInput(DisplayValue = false)]
-        public virtual ICollection<Packs> Packsss { get; set; }
-
-        /*public override string ToString()
-        {
-            return Name;
-        }*/
+        [Display(Name = "")]
+        public virtual ICollection<Packs> Packss { get; set; }
+      
+      
+    }
+    public enum Active
+    {
+        Aktywny,
+        Nieaktywny,
     }
 }

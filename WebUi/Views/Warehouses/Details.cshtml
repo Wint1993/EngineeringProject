@@ -1,7 +1,7 @@
 ﻿@model Domain.Entities.Warehouses
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details" + @Model.Name;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -16,82 +16,104 @@
     <li>@Html.ActionLink("Contact", "Contact", "Navigator")</li>
 </ul>
 </div>
-<div class="row">
-    <div class="col-xs-2">
 
-        <ul class="nav nav-pills nav-stacked span3">
-            <li class="nav-link active"><a href="#">CRM</a></li>
-            <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
-            <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
-            <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-            <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
-            <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
-        </ul>
+
+
+    <div class="row">
+        <div class="col-xs-2">
+
+            <ul class="nav nav-pills nav-stacked span3">
+                <li class="nav-link active"><a href="#">CRM</a></li>
+                <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
+                <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
+                <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
+                <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+                <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
+            </ul>
+
+        </div>
+
+        <div class="col-xs-10">
+            <ul class="nav nav-tabs">
+                <h3>Szczegóły magazynu @Model.Name</h3>
+
+            </ul>
+
+            <ul class="nav nav-tabs"></ul>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+        
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <ul class="nav nav-tabs">
+                <h3></h3>
+
+            </ul>
+            <dt>
+                @Html.DisplayNameFor(model => model.Adress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adress)
+            </dd>
+            <ul class="nav nav-tabs">
+                <h3></h3>
+
+            </ul>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tel)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tel)
+            </dd>
+            <ul class="nav nav-tabs">
+                <h3></h3>
+
+            </ul>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Postalcode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Postalcode)
+            </dd>
+            <ul class="nav nav-tabs">
+                <h3></h3>
+
+            </ul>
+            <dt>
+                @Html.DisplayNameFor(model => model.NIP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NIP)
+            </dd>
+            <ul class="nav nav-tabs">
+                <h3></h3>
+
+            </ul>
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+            <ul class="nav nav-tabs">
+             <h3></h3>
+
+            </ul>
+            <p>
+
+                @Html.ActionLink("Wróć do listy", "Index", null, new { @class = "btn btn-default" })
+            </p>
+
+
+
+        </div>
 
     </div>
-    <div class="col-xs-10">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Adress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Adress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Postalcode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Postalcode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NIP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NIP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <p>
-
-            @Html.ActionLink("Wróć do listy", "Index")
-        </p>
-
-
-
-    </div>
-    
-</div>

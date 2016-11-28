@@ -28,6 +28,7 @@ namespace Domain.Concrete
                 Transportfleet dbEntry = context.Transportfleets.Find(transportfleet.TranID);
                 if (dbEntry != null)
                 {
+                    
                     dbEntry.Carname = transportfleet.Carname;
                     dbEntry.Owner = transportfleet.Owner;
                     dbEntry.Extrainformation = transportfleet.Extrainformation;
@@ -36,7 +37,8 @@ namespace Domain.Concrete
                     dbEntry.Registrationnumber = transportfleet.Registrationnumber;
                     dbEntry.VIN = transportfleet.VIN;
                     dbEntry.Active = transportfleet.Active;
-
+                    dbEntry.StartDate = transportfleet.StartDate;
+                    dbEntry.CarriageID = transportfleet.CarriageID;
                 }
             }
             context.SaveChanges();

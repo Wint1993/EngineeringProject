@@ -11,10 +11,12 @@ namespace WebUi.Controllers
     public class AdminController : Controller
     {
         private IPersonRepository repository;
+       
 
         public AdminController(IPersonRepository repo)
         {
             repository = repo;
+          
         }
         // GET: Admin
         public ViewResult Index()
@@ -30,11 +32,13 @@ namespace WebUi.Controllers
 
         public ViewResult Edit(int? personID)
         {
+
             Person person = repository.Persons.FirstOrDefault(p => p.personID == personID);
             return View(person);
+            
 
         }
-
+   
         [HttpPost]
         public ActionResult Edit(Person person)
         {

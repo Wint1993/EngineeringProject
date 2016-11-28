@@ -37,7 +37,8 @@
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-right">ID</th>
-                <th>Nazwa</th>
+                <th class="text-right">Nazwa</th>
+                <th class="text-right">Firma</th>
                 <th class="text-right">Telefon</th>
                 <th class="text-center">Akcje</th>
             </tr>
@@ -45,12 +46,15 @@
             {
                 <tr>
                     <td class="text-right">@item.personID</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.personID })</td>
+                    <td class="text-right">@item.Name</td>
+                    <td class="text-right">@item.Concern</td>
                     <td class="text-right">@item.Tel.ToString()</td>
                     <td class="text-center">
                       
+                        @Html.ActionLink("Edytuj", "Edit", new { item.personID }, new { @class = "btn btn-success btn-xs" })
 
-                            @using (Html.BeginForm("Delete", "Admin"))
+
+                            @using (Html.BeginForm("Delete", "Admin", new { item.personID }))
                             {
                                 @Html.Hidden("ID", item.personID)
                                 <input type="submit"

@@ -35,36 +35,44 @@
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-right">ID</th>
-                <th>Nazwa</th>
+                <th class="text-right">Nazwa</th>
+                <th class="text-right">Adres</th>
                 <th class="text-right">Telefon</th>
+                <th class="text-right">Aktywność</th>
                 <th class="text-center">Akcje</th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td class="text-right">@item.WarehousesID</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.WarehousesID })</td>
+                    <th class="text-right">@item.Name.ToString()</th>
+                    <td class="text-right">@item.Adress.ToString()</td>
                     <td class="text-right">@item.Tel.ToString()</td>
+                    <td class="text-right">@item.Active.ToString()</td>
                     <td class="text-center">
-                        
-                      
-                     
-                        @Html.Hidden("WarehousesID", item.WarehousesID)
-                            <input type="submit"
-                                   class="btn btn-danger btn-xs"
-                                   value="Usuń" />
-                        
-                        @using (Html.BeginForm("Details", "Warehouses", new { item.WarehousesID }))
-                        {
-                            @Html.Hidden("ID", item.WarehousesID)
-                            <input type="submit"
-                                   class="btn btn-primary btn-xs"
-                                   value="Szczegóły" />
+           
+                          
+                            @Html.ActionLink("Edytuj", "Edit", new { item.WarehousesID }, new { @class = "btn btn-success btn-xs"} )
+                                                     
+
+                            @using (Html.BeginForm("Delete", "Warehouses", new { item.WarehousesID }))
+                            {
+                                @Html.Hidden("WarehousesID", item.WarehousesID)
+                                <input type="submit"
+                                       class="btn btn-danger btn-xs"
+                                       value="Usuń" />
+                            }
+                            @using (Html.BeginForm("Details", "Warehouses", new { item.WarehousesID }))
+                            {
+                                @Html.Hidden("ID", item.WarehousesID)
+                                <input type="submit"
+                                       class="btn btn-primary btn-xs"
+                                       value="Szczegóły" />
 
 
-                        }
-
-                    </td>
+                            }
+                           
+</td>
                 </tr>
             }
         </table>

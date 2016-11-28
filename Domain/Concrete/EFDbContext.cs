@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Domain.Entities;
+using System.Data.Entity.ModelConfiguration.Conventions;
+
 
 namespace Domain.Concrete
 {
@@ -15,6 +17,18 @@ namespace Domain.Concrete
         public DbSet<Transportfleet> Transportfleets { get; set; }
         public DbSet<Packs> Packss { get; set; }
         public DbSet<Carriage> Carriagess { get; set; }
+
+      /*  protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            
+            modelBuilder.Entity<Warehouses>().MapToStoredProcedures();
+        }*/
+
+
+
+
 
     }
 }

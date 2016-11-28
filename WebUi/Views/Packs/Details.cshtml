@@ -25,7 +25,14 @@
         </ul>
 
     </div>
+
+
     <div class="col-xs-10">
+        <ul class="nav nav-tabs">
+            <h3>Szczegóły paczki @Model.Name</h3>
+
+        </ul>
+
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -33,6 +40,7 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3></ul>
 
         <dt>
             @Html.DisplayNameFor(model => model.wymiarX)
@@ -41,6 +49,8 @@
         <dd>
             @Html.DisplayFor(model => model.wymiarX)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3>
+</ul>
 
         <dt>
             @Html.DisplayNameFor(model => model.wymiarY)
@@ -49,6 +59,8 @@
         <dd>
             @Html.DisplayFor(model => model.wymiarY)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3>
+</ul>
 
         <dt>
             @Html.DisplayNameFor(model => model.wymiarZ)
@@ -57,6 +69,8 @@
         <dd>
             @Html.DisplayFor(model => model.wymiarZ)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3>
+</ul>
 
         <dt>
             @Html.DisplayNameFor(model => model.Waga)
@@ -65,6 +79,8 @@
         <dd>
             @Html.DisplayFor(model => model.Waga)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3>
+</ul>
 
         <dt>
             @Html.DisplayNameFor(model => model.dataprzyjeciadomagazynu)
@@ -73,6 +89,8 @@
         <dd>
             @Html.DisplayFor(model => model.dataprzyjeciadomagazynu)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3>
+</ul>
 
         <dt>
             @Html.DisplayNameFor(model => model.datawyslaniazmagazynu)
@@ -81,6 +99,8 @@
         <dd>
             @Html.DisplayFor(model => model.datawyslaniazmagazynu)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3>
+</ul>
 
         <dt>
             @Html.DisplayNameFor(model => model.dataodebrania)
@@ -89,17 +109,24 @@
         <dd>
             @Html.DisplayFor(model => model.dataodebrania)
         </dd>
+        <ul class="nav nav-tabs"><h3></h3>
+</ul>
 
         <dt>
-            @Html.DisplayNameFor(model => model.WarehousesID)
+            @Html.DisplayNameFor(model => model.Warehouses.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WarehousesID)
+            @Html.DisplayFor(model => model.Warehouses.Name)
         </dd>
+        <ul class="nav nav-tabs">
+            <h3></h3>
+
+        </ul>
+
         <p>
 
-            @Html.ActionLink("Wróć do listy", "Index")
+            @Html.ActionLink("Wróć do listy", "Index", null, new { @class = "btn btn-default" })
         </p>
     </div>
 

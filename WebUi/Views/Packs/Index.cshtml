@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Domain.Entities.Packs>
+﻿@model PagedList.IPagedList<Domain.Entities.Packs>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -31,22 +32,47 @@
             <ul class="nav nav-tabs">
 
             </ul> 
+     
+        @using (Html.BeginForm("Index", "Packs", FormMethod.Get))
+        {
+            <p>
+               Wyszukaj nazwę paczki: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search" />
+           
+                Wybór magazynu: @Html.DropDownList("SelectedWarehouses", "All")
+                <input type="submit" value="Szukaj" />
+            </p>
+
+        }
+
+
+        <ul class="nav nav-tabs"></ul> 
+
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-right">ID</th>
-                <th>Nazwa</th>
-                <th class="text-right">Telefon</th>
+               @* <th class="text-right">Nazwa paczki</th>*@
+                @**@<th class="text-right">@Html.ActionLink("Nazwa", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</th>
+                @*<th class="text-right">Data przyjecia do magazynu</th>*@
+                <th class="text-right">@Html.ActionLink("Data przyjęcia do magazynu", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+</th>
+                <th class="text-right">Magazyn</th>
+              
                 <th class="text-center">Akcje</th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td class="text-right">@item.PacksID</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.PacksID })</td>
-                    <td class="text-right">eee</td>
+                    <td class="text-right">@item.Name</td>
+                    <th class="text-right">@item.dataprzyjeciadomagazynu.ToString()</th>
+                    <th class="text-right">@item.Warehouses.Name.ToString()</th>
                     <td class="text-center">
                         
-                        @using (Html.BeginForm("Delete", "Packs"))
+                        @Html.ActionLink("Edytuj", "Edit", new { item.PacksID }, new { @class = "btn btn-success btn-xs" })
+
+                        
+                        @using (Html.BeginForm("Delete", "Packs", new { item.PacksID }))
                         {
                             @Html.Hidden("PacksID", item.PacksID)
                             <input type="submit"
@@ -66,11 +92,21 @@
                 </tr>
             }
         </table>
-    </div>
-    <div class="col-xs-10">
         <div class="panel-footer">
             @Html.ActionLink("Dodaj nowy produkt", "Create", null,
             new { @class = "btn btn-default" })
-        </div>
+            <div class="btn-group pull-right">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+               
+                </div>
+            <div class="btn-group pull-right">
+              
+                @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            </div>
+            </div>
     </div>
+    
+      
+    
 </div>
