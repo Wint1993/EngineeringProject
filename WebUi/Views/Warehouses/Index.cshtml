@@ -1,9 +1,24 @@
-﻿@model IEnumerable<Domain.Entities.Warehouses>
-
+﻿@model PagedList.IPagedList<Domain.Entities.Warehouses>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/")jquery-1.10.2.js"></script>
+<script type="text/javascript">
+                $(document).ready(function () {
+                    $('#checkBoxAll').click(function () {
+                        if ($(this).is(":checked"))
+                            $('.chkCheckBoxId').prop('checked', true);
+                        else
+                            $('.chkCheckBoxId').prop('checked', false);
+                    });
+                });
+</script>
+
+
 
 <div class="navbar navbar-inverse" role="navigation">
 
@@ -21,7 +36,7 @@
             <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
             <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
             <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-            <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+            <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
             <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
         </ul>
 
@@ -32,6 +47,24 @@
 
                 
             </ul> 
+
+        @using (Html.BeginForm("Index", "Warehouses", FormMethod.Get))
+        {
+            <p>
+                Wyszukaj nazwę magazynu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Szukaj" />
+
+                Aktywność: @Html.DropDownList("SelectedAct", "All")
+                <input type="submit" value="Szukaj" />
+                @*  Wybór aktywności: @Html.DropDownList("active", "All")
+                <input type="submit" value="Szukaj" /> *@
+            </p>
+        }
+
+
+
+
+
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-right">ID</th>
@@ -48,7 +81,7 @@
                     <th class="text-right">@item.Name.ToString()</th>
                     <td class="text-right">@item.Adress.ToString()</td>
                     <td class="text-right">@item.Tel.ToString()</td>
-                    <td class="text-right">@item.Active.ToString()</td>
+                    <td class="text-right">@item.Act.Active.ToString()</td>
                     <td class="text-center">
            
                           
@@ -62,25 +95,33 @@
                                        class="btn btn-danger btn-xs"
                                        value="Usuń" />
                             }
-                            @using (Html.BeginForm("Details", "Warehouses", new { item.WarehousesID }))
-                            {
-                                @Html.Hidden("ID", item.WarehousesID)
-                                <input type="submit"
-                                       class="btn btn-primary btn-xs"
-                                       value="Szczegóły" />
+                        @Html.ActionLink("Szczegóły", "Details", new { item.WarehousesID }, new { @class = "btn btn-primary btn-xs" })
 
 
-                            }
+
                            
 </td>
                 </tr>
             }
         </table>
-    </div>
-    <div class="col-xs-10">
         <div class="panel-footer">
-            @Html.ActionLink("Dodaj nowy produkt", "Create", null,
+            @Html.ActionLink("Dodaj nowy magazyn", "Create", null,
             new { @class = "btn btn-default" })
+            <div class="btn-group pull-right">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            </div>
+            <div class="btn-group pull-right">
+
+              @*  @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LinkToFirstPageFormat = String.Format("Pierwsza strona"), LinkToPreviousPageFormat = String.Format("<"), LinkToNextPageFormat = String.Format(">"), LinkToLastPageFormat = String.Format("Ostatnia strona"), MaximumPageNumbersToDisplay = 5 })
+
+
+            </div>
+
         </div>
     </div>
+ 
 </div>

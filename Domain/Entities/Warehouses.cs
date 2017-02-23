@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -12,7 +13,8 @@ namespace Domain.Entities
     {
         [HiddenInput(DisplayValue = false)]
         public int WarehousesID { get; set; }
-        [Required(ErrorMessage = "Wpisz nazwę magazynu")]
+        //[Required(ErrorMessage = "Wpisz nazwę magazynu")]
+        [Required(ErrorMessage = "Wpisz nazwę przesyłki")]
         [Display(Name = "Nazwa magazynu")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Wpisz adres")]
@@ -23,23 +25,36 @@ namespace Domain.Entities
         public string Tel { get; set; }
         [Required(ErrorMessage = "Wpisz kod pocztowy")]
         [Display(Name = "Kod pocztowy")]
-        public string Postalcode { get; set; }
+        public string PostalCode { get; set; }
         [Required(ErrorMessage = "Wpisz NIP")]
         [Display(Name = "NIP")]
         public string NIP { get; set; }
 
-        public Active Active { get; set; }
-        [Timestamp]
+
+        [Display(Name = "Aktywność")]
+        public int actID { get; set; }
+        [ForeignKey("actID")]
+        [Display(Name = "Aktywność")]
+        public virtual Act Act { get; set; }
+
 
         [HiddenInput(DisplayValue = false)]
         [Display(Name = "")]
         public virtual ICollection<Packs> Packss { get; set; }
-      
-      
+
+
+
+       /* [HiddenInput(DisplayValue = false)]
+        [Display(Name = "")]
+        public virtual ICollection<Person> Person { get; set; }*/
+
+
+
+        [HiddenInput(DisplayValue = false)]
+        [Display(Name = "")]
+        public virtual ICollection<Carriage> Carriagess { get; set; }
+
+
     }
-    public enum Active
-    {
-        Aktywny,
-        Nieaktywny,
-    }
+
 }

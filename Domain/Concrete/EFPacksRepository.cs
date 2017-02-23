@@ -44,7 +44,11 @@ namespace Domain.Concrete
                     dbEntry.datawyslaniazmagazynu = packs.datawyslaniazmagazynu;
                     dbEntry.dataodebrania = packs.dataodebrania;
                     dbEntry.WarehousesID = packs.WarehousesID;
-                  //  dbEntry.CarriageID = packs.CarriageID;
+                    dbEntry.personID = packs.personID;
+                    dbEntry.CarriageID = packs.CarriageID;
+
+
+
 
                 }
             }

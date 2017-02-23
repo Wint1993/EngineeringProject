@@ -20,19 +20,22 @@ namespace WebUi.Controllers
         private EFDbContext db = new EFDbContext();
         private IPacksRepository repository;
         private IWarehousesRepository repository1;
+        private IPersonRepository repository2;
         public int PageSize = 4;
-        public PacksController(IPacksRepository packrepostiory, IWarehousesRepository repos)
+        public PacksController(IPacksRepository packrepostiory,IWarehousesRepository repo,IPersonRepository repo2)
         {
             this.repository = packrepostiory;
-            this.repository1 = repos;
+            this.repository1 = repo;
+            this.repository2 = repo2;
             
         }
         
      
 
-        
-        public ViewResult Index(int? SelectedWarehouses,string sortOrder, string currentFilter, string searchString, int? page)
+        [HttpGet]
+        public ActionResult Index(int? SelectedWarehouses,string sortOrder, string currentFilter1, string currentFilter, string searchString1, string searchString, int? page)
         {
+
             var warehouse = db.Warehousess.OrderBy(q => q.Name).ToList();
             ViewBag.SelectedWarehouses = new SelectList(warehouse, "WarehousesID", "Name", SelectedWarehouses);
             int warehouseID = SelectedWarehouses.GetValueOrDefault();
@@ -42,6 +45,7 @@ namespace WebUi.Controllers
                 .OrderBy(d => d.PacksID)
                 .Include(d => d.Warehouses);
 
+            
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -53,14 +57,30 @@ namespace WebUi.Controllers
             else
             {
                 searchString = currentFilter;
+
             }
 
+            if (searchString1 != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString1 = currentFilter1;
+
+            }
+            ViewBag.CurrentFilter1 = searchString1;
             ViewBag.CurrentFilter = searchString;
 
-          
             if (!String.IsNullOrEmpty(searchString))
             {
                 packs = packs.Where(s => s.Name.Contains(searchString));
+
+            }
+
+            if (!String.IsNullOrEmpty(searchString1))
+            {
+                packs = packs.Where(s => s.Person.Name.Contains(searchString));
                                        
             }
             switch (sortOrder)
@@ -79,7 +99,7 @@ namespace WebUi.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 1;
             int pageNumber = (page ?? 1);
 
 
@@ -88,11 +108,40 @@ namespace WebUi.Controllers
            
         }
 
-     
+        [HttpPost]
+        public ActionResult Index(FormCollection formCollection)
+        {
+            string[] ids = formCollection["PacksID"].Split(new char[]{','});
+            foreach (string id in ids)
+            {
+
+                Packs packs = this.db.Packss.Find(int.Parse(id));
+                if (packs != null)
+                  {
+               // var packs = this.db.Packss.Find(int.Parse(id));
+
+                this.db.Packss.Remove(packs);
+                    this.db.SaveChanges();
+                    TempData["message"] = string.Format("Usunięto ");
+               }
+            }
+            return RedirectToAction("Index");
+        }
+
         public ViewResult Index1()
         {
             return View(repository.Packss);
         }
+
+        public void Populate1(object selectedPerson = null)
+        {
+            var personQuery = from d in repository2.Persons
+                                  orderby d.Name
+                                  select d;
+            ViewBag.personID = new SelectList(personQuery, "personID", "Name", selectedPerson);
+
+        }
+
 
         public void Populate(object selectedWarehouse = null)
         {
@@ -123,8 +172,10 @@ namespace WebUi.Controllers
        
         public ActionResult Create()
         {
-            Populate();           
-            
+            Populate();
+            Populate1();
+
+
             return View("Edit", new Packs());
         }
 
@@ -140,19 +191,17 @@ namespace WebUi.Controllers
                     db.Packss.Add(packs);
                     db.SaveChanges();
                     repository.SavePacks(packs);
-
-
-                    /*db.Courses.Add(course);
-                    db.SaveChanges();*/
+                    
                     return RedirectToAction("Index");
                 }
             }
             catch (RetryLimitExceededException /* dex */)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.)
+                
                 ModelState.AddModelError("", "Nie udało się zapisać");
             }
             Populate(packs.WarehousesID);
+            Populate1(packs.personID);
             return View(packs);
 
 
@@ -176,6 +225,7 @@ namespace WebUi.Controllers
         {
             Packs packss = repository.Packss.FirstOrDefault(p => p.PacksID == PacksID);
             Populate(packss.WarehousesID);
+            Populate1(packss.personID);
 
             return View(packss);
             
@@ -185,20 +235,7 @@ namespace WebUi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Packs packs)
         {
-            /*
-            if (ModelState.IsValid)
-            {
-                repository.SavePacks(packs);
-                TempData["message"] = string.Format("Zapisano {0} ", packs.Name);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-
-                return View(packs);
-
-            }
-            */
+           
             try
             {
                 if (ModelState.IsValid)
@@ -210,15 +247,17 @@ namespace WebUi.Controllers
             }
             catch (RetryLimitExceededException /* dex */)
             {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                ModelState.AddModelError("", "Nie udało się zapisać");
            
 
             }
             Populate();
+            Populate1();
 
             return View(packs);
 
         }
+        [HttpPost]
         public ActionResult Delete(int PacksID)
         {
             Packs delpacks = repository.DeletePacks(PacksID);

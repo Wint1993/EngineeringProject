@@ -16,14 +16,17 @@ namespace Domain.Entities
 
         [Required(ErrorMessage ="Wpisz imię i nazwisko")]
         [Display(Name="Imię i nazwisko")]
+        [StringLength(50, MinimumLength = 4)]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Wpisz adres")]
         [DataType(DataType.MultilineText),Display(Name="Adres")]
+        [StringLength(50, MinimumLength = 3)]
         public string Adress { get; set; }
 
         [Required(ErrorMessage = "Wpisz numer kontaktowy")]
         [Display(Name = "Numer kontaktowy")]
+        [StringLength(50, MinimumLength = 9)]
         public string Tel { get; set; }
 
         [Required(ErrorMessage = "Wpisz adres email")]
@@ -48,7 +51,7 @@ namespace Domain.Entities
 
         [Required(ErrorMessage = "Wpisz kod pocztowy")]
         [Display(Name = "Kod pocztowy")]
-        public string Postalcode { get; set; }
+        public string PostalCode { get; set; }
 
         [Required(ErrorMessage = "Wpisz NIP")]
         [Display(Name = "NIP")]
@@ -57,12 +60,13 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Wpisz Pesel")]
         [Display(Name = "Pesel")]
         public string Pesel { get; set; }
-        /*
-        public int CarriageID { get; set; }
-        [ForeignKey("CarriageID")]
+
+
         [HiddenInput(DisplayValue = false)]
         [Display(Name = "")]
-        public Carriage Carriage { get; set; }*/
+        public virtual ICollection<Packs> Packss { get; set; }
+
+
 
     }
 }

@@ -13,37 +13,43 @@ namespace WebUi
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(null,
-                "",
-                new
-                {
-                    controller = "Person",
-                    action = "List",
-                    category = (string)null,
-                    page = 1
-                }
-            );
+             routes.MapRoute(null,
+                 "",
+                 new
+                 {
+                     controller = "Packs",
+                     action = "Index",
+                     category = (string)null,
+                     page = 1
+                 }
+             );
 
-            routes.MapRoute(null,
-                "Page{page}",
-                new { controller = "Person", action = "List", category = (string)null },
+             routes.MapRoute(null,
+                 "Page{page}",
+                 new { controller = "Packs", action = "Index", category = (string)null },
+                 new { page = @"\d+" }
+             );
+
+             routes.MapRoute(null,
+                 "{category}",
+                 new { controller = "Packs", action = "Index", page = 1 }
+             );
+
+             routes.MapRoute(null,
+                 "{category}/Page{page}",
+                 new { controller = "Packs", action = "Index" },
+                 new { page = @"\d+" }
+             );
+
+             routes.MapRoute(null, "{controller}/{action}");
+             
+           /* routes.MapRoute(null, "{category}/Page{page}",
+                new { controller = "Admin", action = "Index" },
                 new { page = @"\d+" }
-            );
-
-            routes.MapRoute(null,
-                "{category}",
-                new { controller = "Person", action = "List", page = 1 }
-            );
-
-            routes.MapRoute(null,
-                "{category}/Page{page}",
-                new { controller = "Person", action = "List" },
-                new { page = @"\d+" }
-            );
+                );
 
             routes.MapRoute(null, "{controller}/{action}");
-
-
+            */
         }
     }
 }

@@ -36,10 +36,10 @@ namespace Domain.Concrete
                     dbEntry.State = person.State;
                     dbEntry.Concern = person.Concern;
                     dbEntry.ConcernAdress = person.ConcernAdress;
-                    dbEntry.Postalcode = person.Postalcode;
+                    dbEntry.PostalCode = person.PostalCode;
                     dbEntry.NIP = person.NIP;
                     dbEntry.Pesel = person.Pesel;
-                   
+                    
                 }
             }
             context.SaveChanges();

@@ -16,20 +16,19 @@ namespace Domain.Entities
         public int TranID { get; set; }
         [Required(ErrorMessage = "Wpisz nazwę samochodu")]
         [Display(Name = "Nazwa samochodu")]
+        [StringLength(50, MinimumLength = 3)]
         public string Carname { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        [Display(Name = "Wpisz date w formacie dd-mm-yyyy 00:00:00")]
 
-        public DateTime? StartDate { get; set; }
         [Required(ErrorMessage = "Wpisz imie i nazwisko kierowcy samochodu")]
         [Display(Name = "Kierowca samochdou")]
+        [StringLength(50, MinimumLength = 3)]
         public string Owner { get; set; }
         [Required(ErrorMessage = "Wpisz nazwę modelu")]
         [Display(Name = "Nazwa modelu")]
         public string Model { get; set; }
         [Required(ErrorMessage = "Wpisz maksymalną wagę samochodu")]
         [Display(Name = "Maksymalna waga samochodu")]
+        [Range(0, 99999)]
         public decimal Maxcapacity { get; set; }  
         public string Extrainformation { get; set; }
         [Required(ErrorMessage = "Wpisz numer rejestracyjny")]
@@ -38,13 +37,20 @@ namespace Domain.Entities
         [Required(ErrorMessage = "Wpisz numer VIN")]
         [Display(Name = "Numer VIN")]
         public string VIN { get; set; }
-        public Active Active { get; set; }
-        public int CarriageID { get; set; }
-        [ForeignKey("CarriageID")]
+
+        [Display(Name = "Aktywność")]
+        public int actID { get; set; }
+        [ForeignKey("actID")]
+        [Display(Name = "Aktywność")]
+        public virtual Act Act { get; set; }
+
+
+
+     
+
         [HiddenInput(DisplayValue = false)]
         [Display(Name = "")]
-        public Carriage Carriage { get; set; }
-
+        public virtual ICollection<Carriage> Carriagess { get; set; }
 
 
     }

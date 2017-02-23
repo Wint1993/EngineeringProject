@@ -4,6 +4,8 @@
     ViewBag.Title = "Admin: Edycja " + @Model.Name;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@Html.AntiForgeryToken()
+
 <div class="navbar navbar-inverse" role="navigation">
 
     <a class="navbar-brand" href="@Url.Action("List","Person")">Aplikacja</a>
@@ -13,10 +15,6 @@
     </ul>
 </div>
 
-@*<div class="panel">
-    <div class="panel-heading">
-        <h3>Edycja @Model.Name</h3>
-    </div> *@
 
 
 
@@ -28,7 +26,7 @@
                 <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
                 <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-                <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+                <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
                 <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
             </ul>
@@ -40,64 +38,81 @@
                 <h3>Edycja @Model.Name</h3>
               
             </ul>
+            @Html.AntiForgeryToken()
+
+
             @using (Html.BeginForm("Edit", "Warehouses"))
             {
+                @Html.AntiForgeryToken()
+
                 <div class="panel-body">
                     @Html.HiddenFor(m => m.WarehousesID)
 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-7" })
 
-                    @foreach (var property in ViewData.ModelMetadata.Properties)
-                    {
-                        if (property.PropertyName != "WarehousesID")
-                        {                  
-
-                            <div class="form-group">
-                                <label>@(property.DisplayName ?? property.PropertyName)</label>
-
-                                @if (property.PropertyName == "Name")
-                        {
-                                    
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-
-                                @if (property.PropertyName == "Adress")
-                        {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control", rows = 3 })
-                                }
-
-                                @if (property.PropertyName == "Tel")
-                        {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control"})
-                                }
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 
 
-                                 @if (property.PropertyName == "Postalcode")
-                        {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control"})
-                                 }
 
-                                   @if (property.PropertyName == "NIP")
-                        {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                 }
 
-                      
-                                @if (property.PropertyName == "Active")
-                        {
-                                    @Html.DropDownListFor(m => m.Active, new SelectList(Enum.GetNames(typeof(Domain.Entities.Active))))
-                       
-                                }
+                    </div>
+                   
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Adress, new { @class = "control-label col-md-7" })
 
-                                @Html.ValidationMessage(property.PropertyName)
+                        @Html.EditorFor(model => model.Adress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
 
-                            </div>
-                        }
-                    }
+
+
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tel, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PostalCode, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NIP, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.NIP, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NIP, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.actID, new { @class = "control-label col-md-7" })
+
+                        @Html.DropDownList("actID", null, htmlAttributes: new { @class = "form-control" })
+
+
+
+
+                    </div>
+
+
                 </div>
 
                 <div class="panel-footer">
@@ -110,4 +125,3 @@
             }
         </div>
     </div>
-</div>

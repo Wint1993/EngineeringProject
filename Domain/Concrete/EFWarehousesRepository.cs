@@ -32,9 +32,9 @@ namespace Domain.Concrete
                     dbEntry.Name = warehouses.Name;
                     dbEntry.Adress = warehouses.Adress;
                     dbEntry.Tel = warehouses.Tel;
-                    dbEntry.Postalcode = warehouses.Postalcode;
+                    dbEntry.PostalCode = warehouses.PostalCode;
                     dbEntry.NIP = warehouses.NIP;
-                    dbEntry.Active = warehouses.Active;
+                    dbEntry.actID = warehouses.actID;
 
                 }
             }

@@ -20,7 +20,7 @@
             <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
             <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
             <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-            <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+            <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
             <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
         </ul>
 
@@ -119,8 +119,19 @@
         <dd>
             @Html.DisplayFor(model => model.Warehouses.Name)
         </dd>
-        <ul class="nav nav-tabs">
-            <h3></h3>
+
+        <ul class="nav nav-tabs"><h3></h3>
+        </ul>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.Name)
+        </dd>
+        <ul class="nav nav-tabs"><h3></h3>
 
         </ul>
 

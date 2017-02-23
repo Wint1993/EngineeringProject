@@ -5,24 +5,81 @@ using System.Web;
 using System.Web.Mvc;
 using Domain.Abstract;
 using Domain.Entities;
+using Domain.Concrete;
+using System.Data.Entity;
+using PagedList;
 
 namespace WebUi.Controllers
 {
     public class AdminController : Controller
     {
         private IPersonRepository repository;
-       
+        private EFDbContext db = new EFDbContext();
 
         public AdminController(IPersonRepository repo)
         {
             repository = repo;
           
         }
-        // GET: Admin
-        public ViewResult Index()
+
+
+        [HttpGet]
+        public ActionResult Index(string presentfilt, string searchString, int? page)
         {
-            return View(repository.Persons);
+
+
+
+
+            IQueryable<Person> person = db.Persons;
+                                   
+          
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = presentfilt;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                person = person.Where(s => s.Name.Contains(searchString));
+
+            }
+          
+            person = person.OrderBy(s => s.Name);
+            int pageSize = 1;
+            int pageNumber = (page ?? 1);
+
+
+            return View(person.ToPagedList(pageNumber, pageSize));
+
+
+
         }
+
+
+        [HttpPost]
+        public ActionResult Index(FormCollection formCollection)
+        {
+            string[] ids = formCollection["personID"].Split(new char[]{','});
+            foreach (string id in ids)
+            {
+                var person = this.db.Persons.Find(int.Parse(id));
+                this.db.Persons.Remove(person);
+                this.db.SaveChanges();
+                TempData["message"] = string.Format("Usunięto ");
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
 
         public ViewResult Index2()
         {

@@ -15,55 +15,92 @@ namespace Domain.Entities
        // public Packs() { }
         public int PacksID { get; set; }
         [Required(ErrorMessage = "Wpisz nazwę paczki")]
-        [Display(Name = "Nazwa paczki")]
+        [Display(Name = "Nazwa przesyłki")]
         [StringLength(50, MinimumLength = 3)]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Wpisz szczegóły o paczce")]
-        [Display(Name = "Szczegoły")]
+
+
+        [Required(ErrorMessage = "Wpisz szczegóły")]
+        [Display(Name = "Dodatkowe informacje")]
         public string OwnerDescription { get; set; }
-        //public string OwnerDescripiton { get; set; }
-        [Required(ErrorMessage = "Wpisz szerokość paczki")]
-        [Display(Name = "Wpisz szerokość paczki w centymetrach [cm]")]
+
+
+        [Required(ErrorMessage = "Wpisz szerokość paczki w centymetrach [cm]")]
+        [Display(Name = "Szerokość paczki [cm]")]
         [Range(0, 99999)]
         public decimal wymiarX { get; set; }
-        [Required(ErrorMessage = "Wpisz długość paczki")]
-        [Display(Name = "Wpisz długość paczki w centymetrachp [cm]")]
+
+
+
+        [Required(ErrorMessage = "Wpisz długość paczki w centymetrach [cm]")]
+        [Display(Name = "Długość paczki [cm]")]
         [Range(0, 99999)]
         public decimal wymiarY { get; set; }
-        [Required(ErrorMessage = "Wpisz wysokość paczki")]
-        [Display(Name = "Wpisz wysokość paczki w centymetrach [cm]")]
+
+
+
+        [Required(ErrorMessage = "Wpisz wysokość paczki w centymetrach [cm]")]
+        [Display(Name = "Wysokość paczki [cm]")]
         [Range(0, 99999)]
         public decimal wymiarZ { get; set; }
-        [Required(ErrorMessage = "Wpisz wagę paczki")]
-        [Display(Name = "Wpisz wagę paczki w kilogramach [kg]")]
+
+
+
+        [Required(ErrorMessage = "Wpisz wagę paczki w kilogramach [kg]")]
+        [Display(Name = "Waga paczki [kg]")]
         [Range(0, 99999999)]
         public decimal Waga { get; set; }
+
+
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Wpisz date w formacie dd-mm-yyyy 00:00:00")]
-        [Display(Name = "Data przyjecia paczki do magazynu")]
+        [Display(Name = "Data wyjazdu transportu")]
         public DateTime? dataprzyjeciadomagazynu { get; set; }
+
+
+
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "Wpisz date w formacie dd-mm-yyyy 00:00:00")]
-        [Display(Name = "Data wyslania z magazynu")]
+      //  [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       // [Required(ErrorMessage = "Wpisz date w formacie dd-mm-yyyy 00:00:00")]
+        [Display(Name = "Data odbioru transportu")]
         public DateTime? datawyslaniazmagazynu { get; set; }
+
+
+
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "Wpisz date w formacie dd-mm-yyyy 00:00:00")]
+       //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+       // [Required(ErrorMessage = "Wpisz date w formacie dd-mm-yyyy 00:00:00")]
         [Display(Name = "Data odebrania paczki")]
         public DateTime? dataodebrania { get; set; }
 
+
+
+        [Display(Name = "Magazyn")]
         public int WarehousesID { get; set; }
         [ForeignKey("WarehousesID")]
         [Display(Name = "Magazyn")]
         public virtual Warehouses Warehouses { get; set; }
 
-      /*  public int CarriageID { get; set; }
+
+        [Display(Name = "Klient")]
+        public int personID { get; set; }
+        [ForeignKey("personID")]
+        [Display(Name = "Klient")]
+        public virtual Person Person { get; set; }
+
+
+   
+
+        [Display(Name = "Carriage")]
+        public virtual int? CarriageID { get; set; }
         [ForeignKey("CarriageID")]
-        [HiddenInput(DisplayValue = false)]
-        [Display(Name = "")]
-        public Carriage Carriage { get; set; }*/
+        [Display(Name = "Carriage")]
+        public virtual Carriage Carriage { get; set; }
+
+
+
 
 
 

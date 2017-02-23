@@ -5,10 +5,17 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @Html.AntiForgeryToken()
+@*
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Content/jquery-3.1.1.js")" type="text/javascript"</script>
+<script src="@Url.Content("~/Content/jquery-ui.min.js")" type="text/javascript"</script>
+<link href="@Url.Content("~/Content/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+*@
 
+             
 
 <div class="navbar navbar-inverse" role="navigation">
-
+    
     <a class="navbar-brand" href="@Url.Action("List","Person")">Aplikacja</a>
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("About", "About", "Navigator")</li>
@@ -36,7 +43,7 @@
                 <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
                 <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-                <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+                <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
                 <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
             </ul>
@@ -56,64 +63,67 @@
                     @Html.HiddenFor(m => m.PacksID)
                     @Html.HiddenFor(m => m.Warehouses)
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-7" })
+                   
+      <div class="form-group">
+           @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-7" })
+
+           @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+           @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                         
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+      </div>
+                    
+       <div class="form-group">
+           @Html.LabelFor(model => model.OwnerDescription, new { @class = "control-label col-md-7" })
 
+           @Html.EditorFor(model => model.OwnerDescription, new { htmlAttributes = new { @class = "form-control" } })
+           @Html.ValidationMessageFor(model => model.OwnerDescription, "", new { @class = "text-danger" })
+                        
+      </div>
+                                                        
+                                      
+                                    
+                    
+    <div class="form-group">
+        @Html.LabelFor(model => model.wymiarX, new { @class = "control-label col-md-7" })
 
-
-                  
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.OwnerDescription, new { @class = "control-label col-md-7" })
-
-                        @Html.EditorFor(model => model.OwnerDescription, new { htmlAttributes = new { @class = "form-control" }, rows = 3 })
-
-
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.wymiarX, new { @class = "control-label col-md-7" })
-
-                        @Html.EditorFor(model => model.wymiarX, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.wymiarX, "", new { @class = "text-danger" })
-
-
-
-
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.wymiarY, new { @class = "control-label col-md-7" })
-
-                        @Html.EditorFor(model => model.wymiarY, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.wymiarY, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.wymiarX, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.wymiarX, "", new { @class = "text-danger" })
 
 
 
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.wymiarZ, new { @class = "control-label col-md-7" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.wymiarY, new { @class = "control-label col-md-7" })
 
-                        @Html.EditorFor(model => model.wymiarZ, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.wymiarZ, "", new { @class = "text-danger" })
-
-
-
-
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Waga, new { @class = "control-label col-md-7" })
-
-                        @Html.EditorFor(model => model.Waga, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Waga, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.wymiarY, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.wymiarY, "", new { @class = "text-danger" })
 
 
 
 
-                    </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.wymiarZ, new { @class = "control-label col-md-7" })
+
+        @Html.EditorFor(model => model.wymiarZ, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.wymiarZ, "", new { @class = "text-danger" })
+
+
+
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Waga, new { @class = "control-label col-md-7" })
+
+        @Html.EditorFor(model => model.Waga, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Waga, "", new { @class = "text-danger" })
+
+
+
+
+    </div> 
+
                     <div class="form-group">
                         @Html.LabelFor(model => model.dataprzyjeciadomagazynu, new { @class = "control-label col-md-7" })
 
@@ -122,8 +132,9 @@
 
 
 
-
                     </div>
+
+                    @*
                     <div class="form-group">
                         @Html.LabelFor(model => model.datawyslaniazmagazynu, new { @class = "control-label col-md-7" })
 
@@ -132,7 +143,7 @@
 
 
 
-
+                        
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.dataodebrania, new { @class = "control-label col-md-7" })
@@ -140,10 +151,11 @@
                         @Html.EditorFor(model => model.dataodebrania, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.dataodebrania, "", new { @class = "text-danger" })
 
-
+                            
 
 
                     </div>
+                            *@
                     <div class="form-group">
                         @Html.LabelFor(model => model.WarehousesID, new { @class = "control-label col-md-7" })
 
@@ -153,44 +165,27 @@
 
 
                     </div>
+
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.personID, new { @class = "control-label col-md-7" })
+
+                        @Html.DropDownList("personID", null, htmlAttributes: new { @class = "form-control" })
+
+
+
+
+                    </div>
+                   
+
+
+
                  
 
+                 
+                                  
 
-                                      
-
-                @*  @foreach (var property in ViewData.ModelMetadata.Properties)
-                    {
-                        if (property.PropertyName != "PacksID")
-                        {
-                            <div class="form-group">
-                                <label>@(property.DisplayName ?? property.PropertyName)</label>
-
-                                @if (property.PropertyName == "Name")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control", rows = 0 })
-                                }
-                                @if (property.PropertyName == "WarehousesID")
-                                {      
-                                @Html.DropDownList("WarehousesID", null, htmlAttributes: new { @class = "form-control" }) 
-                                    @*  @Html.DropDownList("WarehousesID", String.Empty)
-                                                                        }
-
-
-
-                                                                        else
-                                                                        {
-                                                                            @Html.TextBox(property.PropertyName, null,
-                                                                        new { @class = "form-control" })
-                                                                        }
-                                                                        @Html.ValidationMessage(property.PropertyName)
-
-                                                                    </div>
-                                                                }
-                                                            }
-            *@
-            
-                                                        </div>
+                                                                   </div>
 
                                                         <div class="panel-footer">
 

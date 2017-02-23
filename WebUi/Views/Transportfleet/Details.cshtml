@@ -21,7 +21,7 @@
             <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
             <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
             <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-            <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+            <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
             <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
         </ul>
 
@@ -31,6 +31,9 @@
             <h3>Szczegóły transportu @Model.Carname</h3>
 
         </ul>
+
+
+
         <dt>
             @Html.DisplayNameFor(model => model.Carname)
         </dt>
@@ -38,18 +41,11 @@
         <dd>
             @Html.DisplayFor(model => model.Carname)
         </dd>
-        <ul class="nav nav-tabs">
-            <h3></h3>
 
-        </ul>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+
+
 
         <ul class="nav nav-tabs">
             <h3></h3>
@@ -62,10 +58,16 @@
         <dd>
             @Html.DisplayFor(model => model.Owner)
         </dd>
+
+
+
+
         <ul class="nav nav-tabs">
             <h3></h3>
 
         </ul>
+
+
         <dt>
             @Html.DisplayNameFor(model => model.Model)
         </dt>
@@ -121,13 +123,7 @@
             <h3></h3>
 
         </ul>
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
         <ul class="nav nav-tabs">
             <h3></h3>
 

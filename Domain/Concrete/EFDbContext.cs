@@ -17,18 +17,7 @@ namespace Domain.Concrete
         public DbSet<Transportfleet> Transportfleets { get; set; }
         public DbSet<Packs> Packss { get; set; }
         public DbSet<Carriage> Carriagess { get; set; }
-
-      /*  protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            
-            modelBuilder.Entity<Warehouses>().MapToStoredProcedures();
-        }*/
-
-
-
-
+        public DbSet<Act> Acts { get; set; }
 
     }
 }

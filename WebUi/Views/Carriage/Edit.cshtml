@@ -4,6 +4,8 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@Html.AntiForgeryToken()
+
 
 <div class="navbar navbar-inverse" role="navigation">
 
@@ -16,8 +18,12 @@
 
 <div class="panel">
     <div class="panel-heading">
-        <h3>Edycja @Model.Name</h3>
+        <h3>Edycja @Model.Target</h3>
     </div>
+    @Html.AntiForgeryToken()
+
+
+
 
 
 
@@ -29,7 +35,7 @@
                 <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
                 <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-                <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+                <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
                 <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
             </ul>
@@ -47,54 +53,137 @@
                 <div class="panel-body">
                     @Html.HiddenFor(m => m.CarriageID)
                  
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Target, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Target, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Target, "", new { @class = "text-danger" })
 
 
 
 
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WarehousesID, new { @class = "control-label col-md-7" })
+
+                        @Html.DropDownList("WarehousesID", null, htmlAttributes: new { @class = "form-control" })
 
 
 
 
+                    </div>
+
+          
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TranID, new { @class = "control-label col-md-7" })
+
+                        @Html.DropDownList("TranID", null, htmlAttributes: new { @class = "form-control" })
 
 
 
 
+                    </div>
+
+              
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.zamierzonadatawyslania, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.zamierzonadatawyslania, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.zamierzonadatawyslania, "", new { @class = "text-danger" })
 
 
 
 
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.rzeczywistadatawyslania, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.rzeczywistadatawyslania, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.rzeczywistadatawyslania, "", new { @class = "text-danger" })
 
 
-                    @foreach (var property in ViewData.ModelMetadata.Properties)
-                    {
-                        if (property.PropertyName != "CarriageID")
-                        {
-                            <div class="form-group">
-                                <label>@(property.DisplayName ?? property.PropertyName)</label>
 
-                                @if (property.PropertyName == "Name")
-                        {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control", rows = 5 })
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OwnerDescription, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.OwnerDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OwnerDescription, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+
+             
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <table>
+                                <tr>
+                                    @{
+                                        int cnt = 0;
+                                       
+                                        List<WebUi.ViewModel.AssignedPacksData> packs = ViewBag.Packss;
+                                        foreach (var course in packs)
+                                        {
+                                            if (cnt++ % 3 == 0)
+                                            {
+                                                @:</tr><tr>
                                 }
-
-                                else
-                                {
-                                    @Html.TextBox(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-                                @Html.ValidationMessage(property.PropertyName)
-
-                                @if (property.PropertyName == "PacksID")
-                                {
-                                    @Html.ActionLink("Dodaj", "List", "Packs")
-                                }                                
-                                
-                                @Html.ValidationMessage(property.PropertyName)
-
+                                            @:<td>
+                                                <input type="checkbox"
+                                                       name="selectedCourses"
+                                                       value="@course.PacksID"
+                                                       @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                                @course.PacksID @:  @course.Name
+                                                @:</td>
+                            }
+                                        @:</tr>
+                                    }
+                                </table>
                             </div>
-                        }
-                    }
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  
                 </div>
 
                 <div class="panel-footer">
@@ -108,3 +197,5 @@
         </div>
     </div>
 </div>
+
+

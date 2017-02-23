@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+@Html.AntiForgeryToken()
 <div class="navbar navbar-inverse" role="navigation">
 
     <a class="navbar-brand" href="@Url.Action("List","Person")">Aplikacja</a>
@@ -27,7 +27,7 @@
                 <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
                 <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-                <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+                <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
                 <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
             </ul>
@@ -39,84 +39,96 @@
                 <h3>Edycja @Model.Carname</h3>
                
             </ul>
+            @Html.AntiForgeryToken()
             @using (Html.BeginForm("Edit", "Transportfleet"))
             {
+                @Html.AntiForgeryToken()
                 <div class="panel-body">
                     @Html.HiddenFor(m => m.TranID)
 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Carname, new { @class = "control-label col-md-7" })
 
-                    @foreach (var property in ViewData.ModelMetadata.Properties)
-                    {
-                        if (property.PropertyName != "TranID")
-                        {
-                            <div class="form-group">
-                                <label>@(property.DisplayName ?? property.PropertyName)</label>
-
-                                @if (property.PropertyName == "Carname")
-                                {
-
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-
-                                @if (property.PropertyName == "Owner")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-                                @if (property.PropertyName == "StartDate")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-
-                                @if (property.PropertyName == "Model")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-
-                                @if (property.PropertyName == "Maxcapacity")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-
-                                @if (property.PropertyName == "Extrainformation")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control", rows = 3 })
-                                }
-
-                                @if (property.PropertyName == "Registrationnumber")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-
-                                @if (property.PropertyName == "VIN")
-                                {
-                                    @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control" })
-                                }
-
-                                @if (property.PropertyName == "Active")
-                        {
-                                    @Html.DropDownListFor(m => m.Active, new SelectList(Enum.GetNames(typeof(Domain.Entities.Active))))
-
-                                }
-
-                                @Html.ValidationMessage(property.PropertyName)
+                        @Html.EditorFor(model => model.Carname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Carname, "", new { @class = "text-danger" })
 
 
 
 
-                                @Html.ValidationMessage(property.PropertyName)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Owner, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Owner, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Owner, "", new { @class = "text-danger" })
 
 
-                            </div>
-                        }
-                    }
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Model, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Maxcapacity, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Maxcapacity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Maxcapacity, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Extrainformation, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Extrainformation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Extrainformation, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Registrationnumber, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.Registrationnumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Registrationnumber, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.VIN, new { @class = "control-label col-md-7" })
+
+                        @Html.EditorFor(model => model.VIN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VIN, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.actID, new { @class = "control-label col-md-7" })
+
+                        @Html.DropDownList("actID", null, htmlAttributes: new { @class = "form-control" })
+
+
+
+                        
+                    </div>
+
+
+
+
                 </div>
 
 
@@ -127,25 +139,7 @@
                    @class = "btn btn-default"
                })
                 </div>
-                <div class="container">
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <div class="form-group">
-                                <div class='input-group date' id='StartDate'>
-                                    <input type='text' class="form-control" name="StartDate" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <script type="text/javascript">
-            $(function () {
-                $('#StartDate').datetimepicker();
-            });
-                        </script>
-                    </div>
-                </div>
+            
             }
         </div>
     </div>

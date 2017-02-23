@@ -15,7 +15,7 @@ namespace WebUi
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-           // Database.SetInitializer<EFDbContext>(null);
+            //Database.SetInitializer<EFDbContext>(null);
         }
     }
 }

@@ -31,12 +31,14 @@ namespace Domain.Concrete
                 Carriage dbEntry = context.Carriagess.Find(carriage.CarriageID);
                 if (dbEntry != null)
                 {
-                    dbEntry.Name = carriage.Name;
+                   
                     dbEntry.zamierzonadatawyslania = carriage.zamierzonadatawyslania;
                     dbEntry.rzeczywistadatawyslania = carriage.rzeczywistadatawyslania;
-                    dbEntry.zamierzonadataodebrania = carriage.zamierzonadataodebrania;
-                    dbEntry.rzeczywistadataodebrania = carriage.rzeczywistadataodebrania;
-                   
+                    dbEntry.Target = carriage.Target;
+                    dbEntry.WarehousesID = carriage.WarehousesID;
+                    dbEntry.TranID = carriage.TranID;
+                    dbEntry.OwnerDescription = carriage.OwnerDescription;
+
 
 
                 }

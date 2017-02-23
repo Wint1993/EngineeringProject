@@ -21,7 +21,7 @@
             <li>@Html.ActionLink("Kontrahent", "Index", "Admin")</li>
             <li>@Html.ActionLink("Magazyny", "Index", "Warehouses")</li>
             <li>@Html.ActionLink("Transport", "Index", "Transportfleet")</li>
-            <li>@Html.ActionLink("Paczka", "Index", "Packs")</li>
+            <li>@Html.ActionLink("Przesyłka", "Index", "Packs")</li>
             <li>@Html.ActionLink("Przewoz", "Index", "Carriage")</li>
 
         </ul>
@@ -42,7 +42,7 @@
             {
                 <tr>
                     <td class="text-right">@item.CarriageID</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.CarriageID })</td>
+                    <td>@Html.ActionLink(item.Target, "Edit", new { item.CarriageID })</td>
                     <td class="text-right">eeee</td>
                     <td class="text-center">
                        
@@ -72,7 +72,7 @@
     </div>
     <div class="col-xs-10">
         <div class="panel-footer">
-            @Html.ActionLink("Dodaj nowy produkt", "Create", null,
+            @Html.ActionLink("Dodaj nowy przewóz", "Create", null,
             new { @class = "btn btn-default" })
         </div>
     </div>

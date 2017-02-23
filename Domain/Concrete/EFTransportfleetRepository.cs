@@ -36,9 +36,8 @@ namespace Domain.Concrete
                     dbEntry.Maxcapacity = transportfleet.Maxcapacity;
                     dbEntry.Registrationnumber = transportfleet.Registrationnumber;
                     dbEntry.VIN = transportfleet.VIN;
-                    dbEntry.Active = transportfleet.Active;
-                    dbEntry.StartDate = transportfleet.StartDate;
-                    dbEntry.CarriageID = transportfleet.CarriageID;
+                   
+                    dbEntry.actID = transportfleet.actID;
                 }
             }
             context.SaveChanges();
