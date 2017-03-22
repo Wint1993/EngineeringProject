@@ -99,7 +99,7 @@ namespace WebUi.Controllers
                     break;
             }
 
-            int pageSize = 1;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
 
 
@@ -151,24 +151,7 @@ namespace WebUi.Controllers
             ViewBag.WarehousesID = new SelectList(trannsportQuery, "WarehousesID", "Name", selectedWarehouse);
 
         }
-        public ViewResult List(int page = 1)
-        {
-            PacksListViewModel model = new PacksListViewModel
-            {
-                Packss = repository.Packss
-                    .OrderBy(p => p.PacksID)
-                    .Skip((page - 1) * PageSize)
-                    .Take(PageSize),
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    PersonsPerPage = PageSize,
-                    TotalPersons = repository.Packss.Count()
-                }
-
-            };
-            return View(model);
-        }
+ 
        
         public ActionResult Create()
         {

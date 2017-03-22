@@ -12,7 +12,14 @@ namespace Domain.Entities
 {
     public class Packs
     {
-       // public Packs() { }
+        // public Packs() { }
+
+
+        public Packs() {
+            this.Carriagess = new List<Carriage>();
+        }
+
+
         public int PacksID { get; set; }
         [Required(ErrorMessage = "Wpisz nazwę paczki")]
         [Display(Name = "Nazwa przesyłki")]
@@ -90,8 +97,7 @@ namespace Domain.Entities
         [Display(Name = "Klient")]
         public virtual Person Person { get; set; }
 
-
-   
+       /*
 
         [Display(Name = "Carriage")]
         public virtual int? CarriageID { get; set; }
@@ -99,9 +105,9 @@ namespace Domain.Entities
         [Display(Name = "Carriage")]
         public virtual Carriage Carriage { get; set; }
 
+    */
 
-
-
+        public virtual ICollection<Carriage> Carriagess { get; set; }
 
 
     }

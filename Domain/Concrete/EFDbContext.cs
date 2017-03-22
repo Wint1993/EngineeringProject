@@ -19,5 +19,26 @@ namespace Domain.Concrete
         public DbSet<Carriage> Carriagess { get; set; }
         public DbSet<Act> Acts { get; set; }
 
+      protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Entity<Packs>()
+                .HasMany(c => c.Carriagess).WithMany(i => i.Packss)
+                .Map(t => t.MapLeftKey("PacksID")
+                    .MapRightKey("CarriageID")
+                    .ToTable("PacksCarriage"));
+
+            modelBuilder.Entity<Transportfleet>()
+                .HasKey(e => e.TranID);
+
+           /* modelBuilder.Entity<Carriage>()
+                .HasOptional(c => c.Transportfleet)
+                .WithRequired(ad => ad.TranID);*/
+
+            modelBuilder.Entity<Transportfleet>().MapToStoredProcedures();
+        }
+        
+
     }
 }

@@ -12,6 +12,10 @@ namespace Domain.Entities
     public class Carriage
     {
        
+        public Carriage()
+        {
+            this.Packss = new HashSet<Packs>();
+        }
         public int CarriageID { get; set; }
        
         [Required(ErrorMessage = "Wpisz nazwę danego transportu")]
@@ -42,10 +46,7 @@ namespace Domain.Entities
         public virtual Transportfleet Transportfleet { get; set; }
 
 
-        //public virtual ICollection<Packs> Packss { get; set; }
-
-
-
+    
         public virtual ICollection<Packs> Packss { get; set; }
 
 

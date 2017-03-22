@@ -45,7 +45,7 @@ namespace Domain.Concrete
                     dbEntry.dataodebrania = packs.dataodebrania;
                     dbEntry.WarehousesID = packs.WarehousesID;
                     dbEntry.personID = packs.personID;
-                    dbEntry.CarriageID = packs.CarriageID;
+                  //  dbEntry.CarriageID = packs.CarriageID;
 
 
 

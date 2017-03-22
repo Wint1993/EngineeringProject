@@ -6,9 +6,12 @@ using System.Web.Mvc;
 using Domain.Abstract;
 using Domain.Entities;
 using Domain.Concrete;
+using System.Data;
+using System.Data.Entity;
+
 using System.Data.Entity.Infrastructure;
 using WebUi.ViewModel;
-
+using System.Net;
 namespace WebUi.Controllers
 {
     public class CarriageController : Controller
@@ -19,6 +22,7 @@ namespace WebUi.Controllers
         private IWarehousesRepository repository1;
         private ITransportfleetRepository repository2;
         private IPacksRepository repository3;
+
         public CarriageController(ICarriageRepository repo, IWarehousesRepository repo1, ITransportfleetRepository repo2, IPacksRepository repo3)
         {
             repository = repo;
@@ -27,15 +31,44 @@ namespace WebUi.Controllers
             repository3 = repo3;
         }
         // GET: Admin
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            return View(repository.Carriagess);
+            var viewModel = new CarriageIndexData();
+
+            viewModel.Carriagess = db.Carriagess
+                  .Include(i => i.Packss);
+                   
+           // var viewmodel = db.Carriagess.Include(p => p.Packss);
+
+           
+
+          /*  if (id != null)
+            {
+                ViewBag.CarriageID = id.Value;
+                viewModel.Packss = viewModel.Carriagess.Where(i => i.CarriageID == id.Value).Single().Packss;
+            }
+           /* if (packsID != null)
+            {
+                ViewBag.PacksID = packsID.Value;
+                // Lazy loading
+                //viewModel.Enrollments = viewModel.Courses.Where(
+                //    x => x.CourseID == courseID).Single().Enrollments;
+                // Explicit loading
+                var selectedCourse = viewModel.Packss.Where(x => x.PacksID == packsID).Single();
+                
+                
+              
+            }*/
+
+            
+            return View(viewModel);
+
+
+
+
         }
 
-        public ViewResult Index2()
-        {
-            return View(repository.Carriagess);
-        }
+
 
 
 
@@ -43,15 +76,18 @@ namespace WebUi.Controllers
         {
             Carriage carriage = repository.Carriagess.FirstOrDefault(p => p.CarriageID == CarriageID);
             Populate(carriage.WarehousesID);
-         //   Populate1(carriage.TranID);
-
+            //   Populate1(carriage.TranID);
+            PopulatePacks(carriage);
             return View(carriage);
 
         }
+
+    
+
+
         private void PopulatePacks(Carriage carriage)
         {
             var allpacks = db.Packss;
-            
             var carriagePacks = new HashSet<int>(carriage.Packss.Select(c => c.PacksID));
             var viewModel = new List<AssignedPacksData>();
             foreach(var pack in allpacks)
@@ -65,10 +101,31 @@ namespace WebUi.Controllers
                 });
 
                 }
-            ViewBag.Packs = viewModel;
+            ViewBag.Packss = viewModel;
 
 
         }
+
+
+        private ICollection<AssignedPacksData> PopulateCourseData(Carriage carriage)
+        {
+            var courses = db.Packss;
+            var playbats = new HashSet<int>(carriage.Packss.Select(b =>b.PacksID));
+            var assignedCourses = new List<AssignedPacksData>();
+
+            foreach (var item in courses)
+            {
+                assignedCourses.Add(new AssignedPacksData
+                {
+                    PacksID = item.PacksID,
+                    Name = item.Name,
+                    Assigned = playbats.Contains(item.PacksID)
+                });
+            }
+
+            return assignedCourses;
+        }
+
         public void Populate(object selectedWarehouse = null)
         {
             var trannsportQuery = from d in repository1.Warehousess
@@ -91,8 +148,7 @@ namespace WebUi.Controllers
         public ActionResult Edit(Carriage carriage, string[] selectedPacks)
         {
 
-            try
-            {
+           
                 if (selectedPacks != null)
                 {
                     carriage.Packss = new List<Packs>();
@@ -113,16 +169,11 @@ namespace WebUi.Controllers
                     TempData["message"] = string.Format("Zapisano {0} ", carriage.Target);
                     return RedirectToAction("Index");
                 }
-            }
-            catch (RetryLimitExceededException /* dex */)
-            {
-                ModelState.AddModelError("", "Nie udało się zapisać");
 
-
-            }
-            PopulatePacks(carriage);
-            Populate();
-            Populate1();
+         
+             PopulatePacks(carriage);
+             Populate();
+             Populate1();
 
             return View(carriage);
 
@@ -132,16 +183,100 @@ namespace WebUi.Controllers
 
 
         }
-        public ViewResult Create()
+        public ActionResult Create()
         {
             Populate();
             Populate1();
             var carriage = new Carriage();
             carriage.Packss = new List<Packs>();
             PopulatePacks(carriage);
-            return View("Edit", new Carriage());
+            
+            return View();
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Carriage carriage, string[] selectedPacks)
+        {
+
+            
+            if (selectedPacks != null)
+            {
+                carriage.Packss = new List<Packs>();
+                foreach (var pack in selectedPacks)
+                {
+                    var packstoAdd = db.Packss.Find(int.Parse(pack));
+                    carriage.Packss.Add(packstoAdd);
+
+                }
+
+            }
+
+
+            //carriage.Packss = new List<Packs>();
+            if (ModelState.IsValid)
+            {
+                db.Carriagess.Add(carriage);
+                db.SaveChanges();
+                //repository.SaveCarriage(carriage);
+
+                // repository.SaveCarriage(carriage);
+                //   TempData["message"] = string.Format("Zapisano {0} ", carriage.Target);
+                return RedirectToAction("Index");
+            }
+
+           
+           // PopulatePacks(carriage);
+            Populate(carriage.WarehousesID);
+            Populate1(carriage.TranID);
+            PopulatePacks(carriage);
+
+            /*   if (ModelState.IsValid)
+               {
+                   db.Carriagess.Add(carriage);
+                   db.SaveChanges();
+                   return RedirectToAction("Index");
+               }
+              PopulatePacks(carriage);
+              Populate(carriage.WarehousesID);
+              Populate1(carriage.TranID);
+              */
+            return View(carriage);
+
+
+
+
+
+
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        public ActionResult Details(int? id)
+        {
+
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Carriage carriage = db.Carriagess.Find(id);
+            if (carriage == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View();
+        }
+
+
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Carriage carriage)
@@ -158,8 +293,8 @@ namespace WebUi.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (RetryLimitExceededException /* dex */)
-            {
+            catch (RetryLimitExceededException /* dex *///)
+        /*    {
 
                 ModelState.AddModelError("", "Nie udało się zapisać");
             }
@@ -169,7 +304,7 @@ namespace WebUi.Controllers
 
 
 
-        }
+        }*
 
 
 

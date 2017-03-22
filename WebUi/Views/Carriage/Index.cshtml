@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Domain.Entities.Carriage>
+﻿@*@model IEnumerable<Domain.Entities.Carriage>*@
+@model WebUi.ViewModel.CarriageIndexData
+
 
 @{
     ViewBag.Title = "Index";
@@ -35,15 +37,23 @@
             <tr>
                 <th class="text-right">ID</th>
                 <th>Nazwa</th>
-                <th class="text-right">Telefon</th>
+                <th class="text-right">Paczki zawarte</th>
                 <th class="text-center">Akcje</th>
             </tr>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Carriagess)
             {
                 <tr>
                     <td class="text-right">@item.CarriageID</td>
                     <td>@Html.ActionLink(item.Target, "Edit", new { item.CarriageID })</td>
-                    <td class="text-right">eeee</td>
+                    <td class="text-right">
+                        @{ 
+                            foreach ( var pack in item.Packss)
+                            {
+                                @: @pack.Name <br />
+                            }
+
+                        }
+                    </td>
                     <td class="text-center">
                        
                         @using (Html.BeginForm("Delete", "Carriage", new { item.CarriageID }))
