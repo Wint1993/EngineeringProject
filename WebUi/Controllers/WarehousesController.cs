@@ -36,7 +36,7 @@ namespace WebUi.Controllers
         public ViewResult Index(int? SelectedAct, string sortOrder, string currentFilter, string searchString, int? page)
         {
 
-            var act = db.Acts.OrderBy(q => q.Active).ToList();
+            var act = db.Act.OrderBy(q => q.Active).ToList();
             ViewBag.SelectedAct = new SelectList(act, "actID", "Active", SelectedAct);
             int cctID = SelectedAct.GetValueOrDefault();
 
@@ -123,7 +123,7 @@ namespace WebUi.Controllers
         }
         public void Populate(object selectedact = null)
         {
-            var trannsportQuery = from d in repository1.Acts
+            var trannsportQuery = from d in repository1.Act
                                   orderby d.Active
                                   select d;
             ViewBag.actID = new SelectList(trannsportQuery, "actID", "Active", selectedact);

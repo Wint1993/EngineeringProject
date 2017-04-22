@@ -15,9 +15,9 @@ namespace Domain.Entities
         // public Packs() { }
 
 
-        public Packs() {
+      /*  public Packs() {
             this.Carriagess = new List<Carriage>();
-        }
+        }*/
 
 
         public int PacksID { get; set; }
@@ -85,14 +85,14 @@ namespace Domain.Entities
 
 
         [Display(Name = "Magazyn")]
-        public int WarehousesID { get; set; }
+        public int? WarehousesID { get; set; }
         [ForeignKey("WarehousesID")]
         [Display(Name = "Magazyn")]
         public virtual Warehouses Warehouses { get; set; }
 
 
         [Display(Name = "Klient")]
-        public int personID { get; set; }
+        public int? personID { get; set; }
         [ForeignKey("personID")]
         [Display(Name = "Klient")]
         public virtual Person Person { get; set; }

@@ -9,7 +9,7 @@ namespace Domain.Abstract
 {
     public interface IActRepository
     {
-        IEnumerable<Act> Acts { get; }
+        IEnumerable<Act> Act { get; }
 
     
 

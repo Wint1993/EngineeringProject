@@ -41,6 +41,8 @@
             </ul> 
             @using (Html.BeginForm("Edit", "Admin"))
             {
+                @Html.AntiForgeryToken()
+
                 <div class="panel-body">
                     @Html.HiddenFor(m => m.personID)
 

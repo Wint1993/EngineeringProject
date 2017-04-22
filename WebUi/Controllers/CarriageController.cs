@@ -107,24 +107,7 @@ namespace WebUi.Controllers
         }
 
 
-        private ICollection<AssignedPacksData> PopulateCourseData(Carriage carriage)
-        {
-            var courses = db.Packss;
-            var playbats = new HashSet<int>(carriage.Packss.Select(b =>b.PacksID));
-            var assignedCourses = new List<AssignedPacksData>();
-
-            foreach (var item in courses)
-            {
-                assignedCourses.Add(new AssignedPacksData
-                {
-                    PacksID = item.PacksID,
-                    Name = item.Name,
-                    Assigned = playbats.Contains(item.PacksID)
-                });
-            }
-
-            return assignedCourses;
-        }
+      
 
         public void Populate(object selectedWarehouse = null)
         {
@@ -213,6 +196,10 @@ namespace WebUi.Controllers
 
             }
 
+            if (!ModelState.IsValid)
+            {
+                return View(carriage);
+            }
 
             //carriage.Packss = new List<Packs>();
             if (ModelState.IsValid)
@@ -230,7 +217,7 @@ namespace WebUi.Controllers
            // PopulatePacks(carriage);
             Populate(carriage.WarehousesID);
             Populate1(carriage.TranID);
-            PopulatePacks(carriage);
+           PopulatePacks(carriage);
 
             /*   if (ModelState.IsValid)
                {
@@ -242,7 +229,8 @@ namespace WebUi.Controllers
               Populate(carriage.WarehousesID);
               Populate1(carriage.TranID);
               */
-            return View(carriage);
+            
+            return View();
 
 
 

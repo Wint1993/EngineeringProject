@@ -12,9 +12,9 @@ namespace Domain.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Act> Acts
+        public IEnumerable<Act> Act
         {
-            get { return context.Acts; }
+            get { return context.Act; }
         }
 
     }

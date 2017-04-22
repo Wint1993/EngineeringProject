@@ -116,10 +116,6 @@
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Transportfleet.cs" />
     <Compile Include="Entities\Warehouses.cs" />
-    <Compile Include="Migrations\201703171028390_InitialCreate.cs" />
-    <Compile Include="Migrations\201703171028390_InitialCreate.Designer.cs">
-      <DependentUpon>201703171028390_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,11 +136,6 @@
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703171028390_InitialCreate.resx">
-      <DependentUpon>201703171028390_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

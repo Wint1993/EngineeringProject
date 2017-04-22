@@ -12,10 +12,10 @@ namespace Domain.Entities
     public class Carriage
     {
        
-        public Carriage()
+     /*   public Carriage()
         {
             this.Packss = new HashSet<Packs>();
-        }
+        }*/
         public int CarriageID { get; set; }
        
         [Required(ErrorMessage = "Wpisz nazwę danego transportu")]

@@ -8,6 +8,7 @@ using Domain.Entities;
 using Domain.Concrete;
 using System.Data.Entity;
 using PagedList;
+using System.Data.Entity.Infrastructure;
 
 namespace WebUi.Controllers
 {
@@ -87,7 +88,7 @@ namespace WebUi.Controllers
         }
 
 
-        public ViewResult Edit(int? personID)
+        public ActionResult Edit(int? personID)
         {
 
             Person person = repository.Persons.FirstOrDefault(p => p.personID == personID);
@@ -97,18 +98,27 @@ namespace WebUi.Controllers
         }
    
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Person person)
         {
-            if (ModelState.IsValid)
-            {
-                repository.SavePerson(person);
-                TempData["message"] = string.Format("Zapisano {0} ", person.Name);
-                return RedirectToAction("Index");
+            try {
+                if (ModelState.IsValid)
+                {
+                    db.Persons.Add(person);
+                    db.SaveChanges();
+                    // repository.SavePerson(person);
+                    TempData["message"] = string.Format("Zapisano {0} ", person.Name);
+                    return RedirectToAction("Index");
+                }
             }
-            else
+            catch (RetryLimitExceededException /* dex */)
             {
-                return View(person);
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
+
+            return View(person);
+            
         }
         public ViewResult Create()
         {

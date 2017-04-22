@@ -12,6 +12,8 @@ namespace WebUi.ViewModel
     {
 
         public IEnumerable<Carriage> Carriagess { get; set; }
+      
         public IEnumerable<Packs> Packss { get; set; }
+       
     }
 }

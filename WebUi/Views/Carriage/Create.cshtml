@@ -44,10 +44,10 @@
         <div class="col-xs-10">
 
             <ul class="nav nav-tabs"></ul>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Create", "Carriage", FormMethod.Post))
             {
                 <div class="panel-body">
-                    @Html.HiddenFor(m => m.CarriageID)
+                   @* @Html.HiddenFor(m => m.CarriageID) *@
 
                     @Html.AntiForgeryToken()
 
